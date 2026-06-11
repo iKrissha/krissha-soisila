@@ -426,8 +426,8 @@ body.owner-mode img{pointer-events:auto}
         <div class="detail-title editable" id="detail-title" contenteditable="false"></div>
         <div class="detail-sub" id="detail-sub"></div>
       </div>
-      <!-- Column switcher — always visible -->
-      <div class="col-switcher" id="col-switcher" title="จำนวนคอลัมน์">
+      <!-- Column switcher — Admin only -->
+      <div class="col-switcher admin-only-btn" id="col-switcher" title="จำนวนคอลัมน์" style="display:none">
         <button class="col-btn" onclick="setMasonryCols(1)">1</button>
         <button class="col-btn" onclick="setMasonryCols(2)">2</button>
         <button class="col-btn active" onclick="setMasonryCols(3)">3</button>
