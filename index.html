@@ -365,7 +365,7 @@ body.owner-mode img{pointer-events:auto}
 }
 </style>
 </head>
-<body class="owner-mode admin-mode">
+<body class="">
 
 <nav class="nav">
   <div class="nav-logo" id="nav-logo" onclick="showPage('home')">KS<span>.</span></div>
@@ -380,7 +380,7 @@ body.owner-mode img{pointer-events:auto}
       <input class="search-input" id="search-input" placeholder="Search albums..." autocomplete="off">
       <div class="search-results" id="search-results"></div>
     </div>
-    <button class="btn admin-only-btn" id="nav-admin-btn" onclick="openModal('admin-modal')" title="Admin" style="">
+    <button class="btn admin-only-btn" id="nav-admin-btn" onclick="openModal('admin-modal')" title="Admin" style="display: none;">
       <i class="ti ti-settings" style="font-size:12px"></i> Admin
     </button>
   </div>
@@ -391,7 +391,7 @@ body.owner-mode img{pointer-events:auto}
   <button class="mob-nav-btn active" data-mob-page="home" onclick="showPage('home')">Home</button>
   <button class="mob-nav-btn" data-mob-page="portfolio" onclick="showPage('portfolio')">Portfolio</button>
   <button class="mob-nav-btn" data-mob-page="experience" onclick="showPage('experience')">Experience</button>
-  <button class="mob-nav-btn admin-only-btn hidden" id="mob-admin-btn" onclick="openModal('admin-modal')" style="">Admin</button>
+  <button class="mob-nav-btn admin-only-btn hidden" id="mob-admin-btn" onclick="openModal('admin-modal')" style="display: none;">Admin</button>
 </nav>
 
 <!-- HOME PAGE -->
@@ -403,12 +403,12 @@ body.owner-mode img{pointer-events:auto}
           <span id="avatar-initials">KS</span>
           <div class="avatar-edit-overlay"><i class="ti ti-camera"></i></div>
         </div>
-        <div class="s-name editable" id="s-name" data-field="name" contenteditable="true">krissha Soisila</div>
-        <div class="s-role editable" id="s-role" data-field="role" contenteditable="true">Lead Designer | Digital Commerce &amp; Design Operations</div>
+        <div class="s-name editable" id="s-name" data-field="name" contenteditable="false">krissha Soisila</div>
+        <div class="s-role editable" id="s-role" data-field="role" contenteditable="false">Lead Designer | Digital Commerce &amp; Design Operations</div>
       </div>
       <div>
         <div class="eyebrow">About</div>
-        <p class="s-bio editable" id="s-bio" data-field="bio" contenteditable="true">Lead Designer specializing in Digital Commerce, E-Commerce Experience, and Brand Communication, with 9+ years of experience creating impactful design solutions across digital platforms.</p>
+        <p class="s-bio editable" id="s-bio" data-field="bio" contenteditable="false">Lead Designer specializing in Digital Commerce, E-Commerce Experience, and Brand Communication, with 9+ years of experience creating impactful design solutions across digital platforms.</p>
       </div>
       <div>
         <div class="eyebrow">Skills</div>
@@ -429,7 +429,7 @@ body.owner-mode img{pointer-events:auto}
     <main class="gallery-area">
       <div class="gallery-top">
         <span class="gallery-heading" id="gallery-heading">Recent work</span>
-        <span class="count-badge" id="gallery-count">12 albums</span>
+        <span class="count-badge" id="gallery-count">13 albums</span>
       </div>
       <div class="filter-bar" id="filter-bar"><span class="filter-chip active" onclick="setCoFilter('all',this)">All</span><span class="filter-chip " onclick="setCoFilter('co1',this)">Worldtech Electronic Co.,Ltd.</span><span class="filter-chip " onclick="setCoFilter('co2',this)">Designer E-Merchandiser – Biotherm (Contract)</span><span class="filter-chip " onclick="setCoFilter('co3',this)">Global Jet ECommerce (Thailand) Co., Ltd.</span><span class="filter-chip " onclick="setCoFilter('co4',this)">BUILKONE Group Co.,Ltd. : Designer</span></div>
       <div class="tag-filter-row" id="tag-filter-row"><span class="tag-filter-label"><i class="ti ti-tag" style="font-size:11px;vertical-align:-1px"></i> Tags:</span><span class="tag-filter-chip active" onclick="setTagFilter('all',this)">All</span><span class="tag-filter-chip " onclick="setTagFilter('Campaign',this)">Campaign</span><span class="tag-filter-chip " onclick="setTagFilter('Key Visual',this)">Key Visual</span><span class="tag-filter-chip " onclick="setTagFilter('Flash Sale',this)">Flash Sale</span><span class="tag-filter-chip " onclick="setTagFilter('E-commerce',this)">E-commerce</span><span class="tag-filter-chip " onclick="setTagFilter('Landing Page',this)">Landing Page</span><span class="tag-filter-chip " onclick="setTagFilter('Branding',this)">Branding</span><span class="tag-filter-chip " onclick="setTagFilter('CRM',this)">CRM</span></div>
@@ -442,7 +442,7 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
     <div class="album-info">
       <div class="album-co-lbl">Worldtech Electronic Co.,Ltd.</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al1')" title="คลิกเพื่อแก้ชื่อ">Mega Campaign 2024</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al1')" title="คลิกเพื่อแก้ชื่อ">Mega Campaign 2024</div>
       <div class="album-tags"><span class="album-tag">Campaign</span><span class="album-tag">Key Visual</span></div>
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
@@ -458,7 +458,7 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1lP26z3J66xXUavIgpEhdv4mXnYUPyPk8&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1-WPCuDJ2VEhxXGeSdc8IQy1e9YDTbZXq&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1MqL16Es-T6T-SFv4Dmf6NBKg_AC5myxP&amp;sz=w1600" alt="" loading="lazy"></div></div>
     <div class="album-info">
       <div class="album-co-lbl">Designer E-Merchandiser – Biotherm (Contract)</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al2')" title="คลิกเพื่อแก้ชื่อ">Lazada</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al2')" title="คลิกเพื่อแก้ชื่อ">Lazada</div>
       <div class="album-tags"><span class="album-tag">Flash Sale</span><span class="album-tag">E-commerce</span></div>
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 34 works</span>
@@ -474,7 +474,7 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
     <div class="album-info">
       <div class="album-co-lbl">Global Jet ECommerce (Thailand) Co., Ltd.</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al3')" title="คลิกเพื่อแก้ชื่อ">Commerce Landing Page</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al3')" title="คลิกเพื่อแก้ชื่อ">Commerce Landing Page</div>
       <div class="album-tags"><span class="album-tag">Landing Page</span></div>
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
@@ -490,7 +490,7 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
     <div class="album-info">
       <div class="album-co-lbl">Worldtech Electronic Co.,Ltd.</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al4')" title="คลิกเพื่อแก้ชื่อ">Brand Identity 2023</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al4')" title="คลิกเพื่อแก้ชื่อ">Brand Identity 2023</div>
       <div class="album-tags"><span class="album-tag">Branding</span></div>
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
@@ -506,7 +506,7 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=14Ow9X68I5DBD4_7U7CRXAFG4E6qoGcLA&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1RnhI0F0iLzusvzdfg309W7a_QNqneQNi&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1TjYP8h-tmi_B4DY_6JDebGtB4e5JRi0r&amp;sz=w1600" alt="" loading="lazy"></div></div>
     <div class="album-info">
       <div class="album-co-lbl">Designer E-Merchandiser – Biotherm (Contract)</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al5')" title="คลิกเพื่อแก้ชื่อ">CRM Campaign Series</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al5')" title="คลิกเพื่อแก้ชื่อ">CRM Campaign Series</div>
       <div class="album-tags"><span class="album-tag">CRM</span><span class="album-tag">Campaign</span></div>
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 23 works</span>
@@ -522,7 +522,7 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1RvlW5bT7j2k0nPRR3JQxepNOMuzVcx-m&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1c2nEotAJag0ddwIa28_pO2U_6xWzb0eF&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1dRpGXqSLEAmYQzHlD0Gc6Wg-VUZbYwK4&amp;sz=w1600" alt="" loading="lazy"></div></div>
     <div class="album-info">
       <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812093057557133')" title="คลิกเพื่อแก้ชื่อ">YELLO</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812093057557133')" title="คลิกเพื่อแก้ชื่อ">YELLO</div>
       
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 69 works</span>
@@ -538,26 +538,10 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1_-wU7Qg1zAVjoesSlWezpWt4fbo_KwoQ&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1okdUk3duQ0xno1BSKNhn-atHBvlwBucU&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1B_XfoKhSsDRXAVPbWxf-rGDt3dUPQ8sL&amp;sz=w1600" alt="" loading="lazy"></div></div>
     <div class="album-info">
       <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812091226299173')" title="คลิกเพื่อแก้ชื่อ">BUILK</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812091226299173')" title="คลิกเพื่อแก้ชื่อ">BUILK</div>
       
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 46 works</span>
-        <span class="album-date">Jun 2026</span>
-      </div>
-    </div>
-  </div><div class="album-card" onclick="openAlbum('id17812092545597700','home')" draggable="true" ondragstart="albumCardDragStart(event,'id17812092545597700')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'id17812092545597700')">
-    <div class="card-actions">
-      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
-      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('id17812092545597700')" title="Edit"><i class="ti ti-edit"></i></button>
-      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('id17812092545597700')" title="Delete"><i class="ti ti-trash"></i></button>
-    </div>
-    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1LbaRVRr1EMb8B4-fchGwfG-j13fRnGkv&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1IM9G55c6E2WzTcE43GTIsU7daY-T7Sg8&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=13F-uG05nUSuqMQtgwNPAFLFjyaVJmsRG&amp;sz=w1600" alt="" loading="lazy"></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812092545597700')" title="คลิกเพื่อแก้ชื่อ">PJM</div>
-      
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 49 works</span>
         <span class="album-date">Jun 2026</span>
       </div>
     </div>
@@ -570,10 +554,26 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1sXHLJWDUnYxlR8YKIaJDRoJaBKQMlN4P&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1VeVP0zFrhgX0jUhec6ReMKBbLs3YMFef&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1AAMFaGU6SzRPtD2yBgVS2Ny0IDcrUnCc&amp;sz=w1600" alt="" loading="lazy"></div></div>
     <div class="album-info">
       <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812095837988343')" title="คลิกเพื่อแก้ชื่อ">Builkone JBL Ploy</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812095837988343')" title="คลิกเพื่อแก้ชื่อ">Builkone JBL Ploy</div>
       
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 45 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812092545597700','home')" draggable="true" ondragstart="albumCardDragStart(event,'id17812092545597700')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'id17812092545597700')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('id17812092545597700')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('id17812092545597700')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1LbaRVRr1EMb8B4-fchGwfG-j13fRnGkv&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1IM9G55c6E2WzTcE43GTIsU7daY-T7Sg8&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=13F-uG05nUSuqMQtgwNPAFLFjyaVJmsRG&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812092545597700')" title="คลิกเพื่อแก้ชื่อ">PJM</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 49 works</span>
         <span class="album-date">Jun 2026</span>
       </div>
     </div>
@@ -586,7 +586,7 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1OoLt8_cousNVbYE5h25su7FG_AlX9jmf&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1kIW8a9WP06IwiJ-96vYx89tGrzwH-7IH&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=10Ew5RivaPp9jOWzbLf1PH-M3ThpWpYyQ&amp;sz=w1600" alt="" loading="lazy"></div></div>
     <div class="album-info">
       <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812113697876794')" title="คลิกเพื่อแก้ชื่อ">Infographic</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812113697876794')" title="คลิกเพื่อแก้ชื่อ">Infographic</div>
       
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 33 works</span>
@@ -602,7 +602,7 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1OKGlYWXTn7spH-iR0XDl0FkmfBF_i6z_&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1OT8jBeQe9vzcc8amuAG76DwDNyt1XtVk&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1DVBBNGJTyfDUNaR3dy-AbfTZ1q-7bqvp&amp;sz=w1600" alt="" loading="lazy"></div></div>
     <div class="album-info">
       <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812118989683869')" title="คลิกเพื่อแก้ชื่อ">Builk GO</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812118989683869')" title="คลิกเพื่อแก้ชื่อ">Builk GO</div>
       
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 22 works</span>
@@ -618,10 +618,26 @@ body.owner-mode img{pointer-events:auto}
     <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1Z7hXV6A7ZprHdvyhqBDmJ_XmZ-T9NEoz&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1iQLCP8cxfmczFTkfVx_P205omaDzLLBO&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1qsbwQC9YWqFy4kD-2G6uGUZVXUThzg83&amp;sz=w1600" alt="" loading="lazy"></div></div>
     <div class="album-info">
       <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812121416775')" title="คลิกเพื่อแก้ชื่อ">HBEX</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812121416775')" title="คลิกเพื่อแก้ชื่อ">HBEX</div>
       
       <div class="album-meta-row">
         <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 14 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812131431106363','home')" draggable="true" ondragstart="albumCardDragStart(event,'id17812131431106363')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'id17812131431106363')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('id17812131431106363')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('id17812131431106363')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title editable" contenteditable="false" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812131431106363')" title="คลิกเพื่อแก้ชื่อ">l</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
         <span class="album-date">Jun 2026</span>
       </div>
     </div>
@@ -632,179 +648,7 @@ body.owner-mode img{pointer-events:auto}
 
 <!-- PORTFOLIO PAGE -->
 <div id="page-portfolio" class="page">
-  <div class="portfolio-page" id="portfolio-content"><div class="co-section">
-      <div class="co-header">
-        <span class="co-name-h editable" data-co-id="co1" contenteditable="true" onblur="saveCoNameInline(this,'co1')">Worldtech Electronic Co.,Ltd.</span>
-        <span class="co-period-h editable" data-co-period="co1" contenteditable="true" onblur="saveCoPeriodInline(this,'co1')">May 2023 - Present (3 years 2 months)</span>
-        
-      </div>
-      <div class="co-albums"><div class="album-card" onclick="openAlbum('al1','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">Worldtech Electronic Co.,Ltd.</div>
-      <div class="album-title ">Mega Campaign 2024</div>
-      <div class="album-tags"><span class="album-tag">Campaign</span><span class="album-tag">Key Visual</span></div>
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
-        <span class="album-date">Jun 2024</span>
-      </div>
-    </div>
-  </div><div class="album-card" onclick="openAlbum('al4','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">Worldtech Electronic Co.,Ltd.</div>
-      <div class="album-title ">Brand Identity 2023</div>
-      <div class="album-tags"><span class="album-tag">Branding</span></div>
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
-        <span class="album-date">Dec 2023</span>
-      </div>
-    </div>
-  </div></div>
-    </div><div class="co-section">
-      <div class="co-header">
-        <span class="co-name-h editable" data-co-id="co2" contenteditable="true" onblur="saveCoNameInline(this,'co2')">Designer E-Merchandiser – Biotherm (Contract)</span>
-        <span class="co-period-h editable" data-co-period="co2" contenteditable="true" onblur="saveCoPeriodInline(this,'co2')">Mar 2023 - May 2023 (3 months)</span>
-        
-      </div>
-      <div class="co-albums"><div class="album-card" onclick="openAlbum('al2','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1lP26z3J66xXUavIgpEhdv4mXnYUPyPk8&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1-WPCuDJ2VEhxXGeSdc8IQy1e9YDTbZXq&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1MqL16Es-T6T-SFv4Dmf6NBKg_AC5myxP&amp;sz=w1600" alt="" loading="lazy"></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">Designer E-Merchandiser – Biotherm (Contract)</div>
-      <div class="album-title ">Lazada</div>
-      <div class="album-tags"><span class="album-tag">Flash Sale</span><span class="album-tag">E-commerce</span></div>
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 34 works</span>
-        <span class="album-date">Jun 2026</span>
-      </div>
-    </div>
-  </div><div class="album-card" onclick="openAlbum('al5','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=14Ow9X68I5DBD4_7U7CRXAFG4E6qoGcLA&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1RnhI0F0iLzusvzdfg309W7a_QNqneQNi&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1TjYP8h-tmi_B4DY_6JDebGtB4e5JRi0r&amp;sz=w1600" alt="" loading="lazy"></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">Designer E-Merchandiser – Biotherm (Contract)</div>
-      <div class="album-title ">CRM Campaign Series</div>
-      <div class="album-tags"><span class="album-tag">CRM</span><span class="album-tag">Campaign</span></div>
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 23 works</span>
-        <span class="album-date">Jun 2026</span>
-      </div>
-    </div>
-  </div></div>
-    </div><div class="co-section">
-      <div class="co-header">
-        <span class="co-name-h editable" data-co-id="co3" contenteditable="true" onblur="saveCoNameInline(this,'co3')">Global Jet ECommerce (Thailand) Co., Ltd.</span>
-        <span class="co-period-h editable" data-co-period="co3" contenteditable="true" onblur="saveCoPeriodInline(this,'co3')">(Jun 2022 - Feb 2023)</span>
-        
-      </div>
-      <div class="co-albums"><div class="album-card" onclick="openAlbum('al3','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">Global Jet ECommerce (Thailand) Co., Ltd.</div>
-      <div class="album-title ">Commerce Landing Page</div>
-      <div class="album-tags"><span class="album-tag">Landing Page</span></div>
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
-        <span class="album-date">Mar 2024</span>
-      </div>
-    </div>
-  </div></div>
-    </div><div class="co-section">
-      <div class="co-header">
-        <span class="co-name-h editable" data-co-id="co4" contenteditable="true" onblur="saveCoNameInline(this,'co4')">BUILKONE Group Co.,Ltd. : Designer</span>
-        <span class="co-period-h editable" data-co-period="co4" contenteditable="true" onblur="saveCoPeriodInline(this,'co4')">(Jul 2018 - Oct 2021)</span>
-        
-      </div>
-      <div class="co-albums"><div class="album-card" onclick="openAlbum('id17812093057557133','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1RvlW5bT7j2k0nPRR3JQxepNOMuzVcx-m&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1c2nEotAJag0ddwIa28_pO2U_6xWzb0eF&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1dRpGXqSLEAmYQzHlD0Gc6Wg-VUZbYwK4&amp;sz=w1600" alt="" loading="lazy"></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title ">YELLO</div>
-      
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 69 works</span>
-        <span class="album-date">Jun 2026</span>
-      </div>
-    </div>
-  </div><div class="album-card" onclick="openAlbum('id17812091226299173','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1_-wU7Qg1zAVjoesSlWezpWt4fbo_KwoQ&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1okdUk3duQ0xno1BSKNhn-atHBvlwBucU&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1B_XfoKhSsDRXAVPbWxf-rGDt3dUPQ8sL&amp;sz=w1600" alt="" loading="lazy"></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title ">BUILK</div>
-      
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 46 works</span>
-        <span class="album-date">Jun 2026</span>
-      </div>
-    </div>
-  </div><div class="album-card" onclick="openAlbum('id17812092545597700','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1LbaRVRr1EMb8B4-fchGwfG-j13fRnGkv&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1IM9G55c6E2WzTcE43GTIsU7daY-T7Sg8&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=13F-uG05nUSuqMQtgwNPAFLFjyaVJmsRG&amp;sz=w1600" alt="" loading="lazy"></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title ">PJM</div>
-      
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 49 works</span>
-        <span class="album-date">Jun 2026</span>
-      </div>
-    </div>
-  </div><div class="album-card" onclick="openAlbum('id17812095837988343','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1sXHLJWDUnYxlR8YKIaJDRoJaBKQMlN4P&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1VeVP0zFrhgX0jUhec6ReMKBbLs3YMFef&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1AAMFaGU6SzRPtD2yBgVS2Ny0IDcrUnCc&amp;sz=w1600" alt="" loading="lazy"></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title ">Builkone JBL Ploy</div>
-      
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 45 works</span>
-        <span class="album-date">Jun 2026</span>
-      </div>
-    </div>
-  </div><div class="album-card" onclick="openAlbum('id17812113697876794','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1OoLt8_cousNVbYE5h25su7FG_AlX9jmf&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1kIW8a9WP06IwiJ-96vYx89tGrzwH-7IH&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=10Ew5RivaPp9jOWzbLf1PH-M3ThpWpYyQ&amp;sz=w1600" alt="" loading="lazy"></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title ">Infographic</div>
-      
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 33 works</span>
-        <span class="album-date">Jun 2026</span>
-      </div>
-    </div>
-  </div><div class="album-card" onclick="openAlbum('id17812118989683869','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1OKGlYWXTn7spH-iR0XDl0FkmfBF_i6z_&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1OT8jBeQe9vzcc8amuAG76DwDNyt1XtVk&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1DVBBNGJTyfDUNaR3dy-AbfTZ1q-7bqvp&amp;sz=w1600" alt="" loading="lazy"></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title ">Builk GO</div>
-      
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 22 works</span>
-        <span class="album-date">Jun 2026</span>
-      </div>
-    </div>
-  </div><div class="album-card" onclick="openAlbum('id17812121416775','portfolio')">
-    
-    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1Z7hXV6A7ZprHdvyhqBDmJ_XmZ-T9NEoz&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1iQLCP8cxfmczFTkfVx_P205omaDzLLBO&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1qsbwQC9YWqFy4kD-2G6uGUZVXUThzg83&amp;sz=w1600" alt="" loading="lazy"></div></div>
-    <div class="album-info">
-      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
-      <div class="album-title ">HBEX</div>
-      
-      <div class="album-meta-row">
-        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 14 works</span>
-        <span class="album-date">Jun 2026</span>
-      </div>
-    </div>
-  </div></div>
-    </div></div>
+  <div class="portfolio-page" id="portfolio-content"></div>
 </div>
 
 <!-- ALBUM DETAIL PAGE -->
@@ -813,11 +657,11 @@ body.owner-mode img{pointer-events:auto}
     <div class="detail-header">
       <button class="back-btn" id="back-btn"><i class="ti ti-arrow-left"></i> Back</button>
       <div class="detail-info">
-        <div class="detail-co" id="detail-co">Designer E-Merchandiser – Biotherm (Contract)</div>
-        <div class="detail-title editable" id="detail-title" contenteditable="true">CRM Campaign Series</div>
-        <div class="detail-sub" id="detail-sub">23 images</div>
+        <div class="detail-co" id="detail-co"></div>
+        <div class="detail-title editable" id="detail-title" contenteditable="false"></div>
+        <div class="detail-sub" id="detail-sub"></div>
       </div>
-      <div class="col-switcher admin-only-btn" id="col-switcher" title="จำนวนคอลัมน์" style="">
+      <div class="col-switcher admin-only-btn" id="col-switcher" title="จำนวนคอลัมน์" style="display: none;">
         <button class="col-btn" onclick="setMasonryCols(1)">1</button>
         <button class="col-btn" onclick="setMasonryCols(2)">2</button>
         <button class="col-btn active" onclick="setMasonryCols(3)">3</button>
@@ -830,76 +674,7 @@ body.owner-mode img{pointer-events:auto}
         <button class="btn btn-sm btn-primary" onclick="openAddImageModal()"><i class="ti ti-plus"></i> Add Images</button>
       </div>
     </div>
-    <div id="masonry-grid" class="masonry cols-3" style="--cols: 3;"><div class="masonry-item" draggable="false" data-img-id="id17812129467181705" onclick="openLightbox(0)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=14Ow9X68I5DBD4_7U7CRXAFG4E6qoGcLA&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812127962843173" onclick="openLightbox(1)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1RnhI0F0iLzusvzdfg309W7a_QNqneQNi&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129503804899" onclick="openLightbox(2)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1TjYP8h-tmi_B4DY_6JDebGtB4e5JRi0r&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812127962843931" onclick="openLightbox(3)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1ueHD7Mii98BKP-XZ2sPH3w0ZWvuOD5XU&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812127962845124" onclick="openLightbox(4)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1fZIrgNL0TklKhK2uQZD_cVjUmtfCtCoy&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812127962843470" onclick="openLightbox(5)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1jeSgvOj77N7mDSbXrOhVJiORgZgLG_zP&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129427673329" onclick="openLightbox(6)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1RnhI0F0iLzusvzdfg309W7a_QNqneQNi&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129427677337" onclick="openLightbox(7)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1ueHD7Mii98BKP-XZ2sPH3w0ZWvuOD5XU&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129427679951" onclick="openLightbox(8)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1fZIrgNL0TklKhK2uQZD_cVjUmtfCtCoy&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129427672827" onclick="openLightbox(9)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1jeSgvOj77N7mDSbXrOhVJiORgZgLG_zP&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448403535" onclick="openLightbox(10)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1eCoXo6t1DAQ_7gJoOUY8CtbzSPp6Dgkp&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448406311" onclick="openLightbox(11)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1KcW2ondyl6jUGx3A0LLJAxKop-Jzo6Of&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448407999" onclick="openLightbox(12)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1n30ndf5jBhhKVdQniqDq0vP5ybpNaN0i&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448406102" onclick="openLightbox(13)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=15S5p2jB1v6kouTFfyPpiT0ZdvB7_204_&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448402550" onclick="openLightbox(14)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1ZRemoMNxLEKmzmvQHudCIDSIPOVTAoXc&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448401445" onclick="openLightbox(15)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1Cf4Pm2YORyCgQACKCf1RCPlSJt7BsmIh&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129467186403" onclick="openLightbox(16)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1dw0JKksuML3352tqs2S7UnReNgSPKaLA&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129467184809" onclick="openLightbox(17)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1D6CxRcTJS141CUYHpa0q7tuei7tfYAUh&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129482584519" onclick="openLightbox(18)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1Q-XnYZ4mafQbjaB94qe17WrrMoZMF2Eb&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129503801424" onclick="openLightbox(19)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1hbYBkaBg9yOGghIVBE2vso8LnRWhMRAo&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129503804857" onclick="openLightbox(20)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1yMCfleTV1lsl2wCyzw9u8fluEEfr93OF&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129503801838" onclick="openLightbox(21)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1zoSrXY8TwoDWyOTw6jbG5wIVIycjC7fT&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div><div class="masonry-item" draggable="false" data-img-id="id17812129521827392" onclick="openLightbox(22)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
-      <img src="https://drive.google.com/thumbnail?id=1a_-9zHtUYnyI4K-mA6OVVmF4Bq4pcDaM&amp;sz=w1600" alt="Image" loading="lazy">
-      
-    </div></div>
+    <div id="masonry-grid"></div>
     <!-- Bottom back button -->
     <div class="detail-bottom-bar">
       <button class="detail-bottom-back" onclick="showPage(prevPage)">
@@ -1191,20 +966,20 @@ AI-assisted pipeline"></textarea>
 </div>
 
 <!-- CMS FAB -->
-<button class="cms-fab" id="cms-fab" onclick="toggleCmsMenu()" title="CMS Admin" style="display: flex;">
+<button class="cms-fab" id="cms-fab" onclick="toggleCmsMenu()" title="CMS Admin" style="display: none;">
   <i class="ti ti-settings"></i>
 </button>
 
 <!-- CMS Popover Menu -->
-<div class="cms-popover open" id="cms-popover">
+<div class="cms-popover" id="cms-popover">
   <div class="cms-bar-title">CMS Admin</div>
   <button class="cms-action" onclick="openModal('profile-modal');loadProfileForm();closeCmsMenu()"><i class="ti ti-user-edit"></i> Edit Profile</button>
   <button class="cms-action" onclick="openAddCompanyModal();closeCmsMenu()"><i class="ti ti-building-plus"></i> Add Company</button>
   <button class="cms-action" onclick="openAddAlbumModal();closeCmsMenu()"><i class="ti ti-folder-plus"></i> Add Album</button>
   <button class="cms-action" onclick="openAddExpModal();closeCmsMenu()"><i class="ti ti-briefcase-plus"></i> Add Experience</button>
   <div class="cms-sep"></div>
-  <button class="cms-action" onclick="undoAction()" id="undo-btn" title="Undo (1 step)" style="color: rgb(255, 255, 255);">
-    <i class="ti ti-arrow-back-up" style="color: var(--accent-m);"></i> Undo
+  <button class="cms-action" onclick="undoAction()" id="undo-btn" disabled="">
+    <i class="ti ti-arrow-back-up"></i> Undo
   </button>
   <div class="cms-sep"></div>
   <button class="cms-action" onclick="bakeAndDownload();closeCmsMenu()" style="color:#7ee787"><i class="ti ti-rocket" style="color:#7ee787"></i> Save &amp; Download HTML</button>
@@ -1311,7 +1086,7 @@ https://drive.google.com/file/d/FILE_ID/view"></textarea>
     <button class="lb-btn" onclick="lbPrev()"><i class="ti ti-arrow-left"></i></button>
     <span class="lb-info" id="lb-info">1 / 1</span>
     <button class="lb-btn" onclick="lbNext()"><i class="ti ti-arrow-right"></i></button>
-    <a class="lb-btn admin-only-btn" id="lb-dl" download="" style="color: rgb(255, 255, 255);"><i class="ti ti-download"></i></a>
+    <a class="lb-btn admin-only-btn" id="lb-dl" download="" style="color: rgb(255, 255, 255); display: none;"><i class="ti ti-download"></i></a>
   </div>
 </div>
 
@@ -2573,32 +2348,43 @@ function toggleWorkflowField(){
   setWorkflowBtn(workflowVisible);
 }
 function bakeAndDownload(){
-  // Get current HTML source
-  const html = document.documentElement.outerHTML;
+  // 1. Exit admin/owner mode first so HTML captures public state
+  const wasAdmin = isAdmin;
+  isAdmin = false;
+  document.body.classList.remove('admin-mode');
+  document.getElementById('cms-fab').style.display = 'none';
+  closeCmsMenu();
+  document.querySelectorAll('.editable').forEach(el => el.contentEditable = 'false');
+  setOwnerMode(false);
 
-  // Serialize current DB
-  const dataStr = JSON.stringify(DB).replace(/\\/g,'\\\\').replace(/`/g,'\\`');
+  // 2. Give browser a tick to apply the DOM changes
+  setTimeout(() => {
+    // 3. Capture clean public HTML
+    const html = document.documentElement.outerHTML;
 
-  // Replace the DEF constant and init line so data is baked in
-  const baked = html.replace(
-    /let DB=loadDB\(\);/,
-    `let DB=${JSON.stringify(DB)};`
-  ).replace(
-    /function loadDB\(\)\{[\s\S]*?return JSON\.parse\(JSON\.stringify\(DEF\)\);\}/,
-    'function loadDB(){try{const s=localStorage.getItem(\'pf_v2\');if(s)return JSON.parse(s);}catch(e){}return JSON.parse(JSON.stringify(DEF));}'
-  );
+    // 4. Bake current DB data in as default
+    const baked = html.replace(
+      /let DB=loadDB\(\);/,
+      `let DB=${JSON.stringify(DB)};`
+    ).replace(
+      /function loadDB\(\)\{[\s\S]*?return JSON\.parse\(JSON\.stringify\(DEF\)\);\}/,
+      'function loadDB(){try{const s=localStorage.getItem(\'pf_v2\');if(s)return JSON.parse(s);}catch(e){}return JSON.parse(JSON.stringify(DEF));}'
+    );
 
-  const blob = new Blob([baked], {type:'text/html;charset=utf-8'});
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.href = url;
-  a.download = 'index.html';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  toast('✅ ดาวน์โหลด index.html แล้ว — อัปโหลดขึ้น GitHub ได้เลย');
+    const blob = new Blob([baked], {type: 'text/html;charset=utf-8'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'index.html';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    toast('✅ Downloaded index.html — ready to upload to GitHub');
+  }, 150);
 }
+
 function exportData(){
   const data=localStorage.getItem('pf_v2')||JSON.stringify(DB);
   const blob=new Blob([data],{type:'application/json'});
