@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="th">
-<head>
+<html lang="th"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -190,29 +188,20 @@ img{max-width:100%;display:block}
 .exp-period{font-size:12px;color:var(--ink3)}
 .exp-badge{font-size:11px;background:var(--accent-l);color:var(--accent-d);padding:3px 9px;border-radius:20px;white-space:nowrap;font-weight:500;flex-shrink:0}
 .exp-desc{font-size:13px;color:var(--ink2);margin-bottom:1rem;line-height:1.65;padding-bottom:1rem;border-bottom:1px solid var(--border)}
-/* 3-zone body: Responsibilities | Workflow | Tools */
-.exp-body{display:grid;grid-template-columns:1fr 1fr 220px;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--bg2)}
-.exp-zone{padding:.9rem 1rem;background:var(--bg)}
-.exp-zone+.exp-zone{border-left:1px solid var(--border)}
+/* Experience card body — vertical rows */
+.exp-body{display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;background:var(--bg2)}
+.exp-zone{padding:.85rem 1rem;background:var(--bg)}
+.exp-zone+.exp-zone{border-top:1px solid var(--border)}
 .exp-zone-tools{background:var(--bg2)}
 .exp-s-lbl{font-size:10px;font-weight:600;color:var(--ink3);text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px;display:flex;align-items:center;gap:5px}
 .exp-s-lbl i{font-size:12px;color:var(--accent-m)}
-.exp-list{list-style:none;display:flex;flex-direction:column;gap:5px}
-.exp-list li{font-size:12.5px;color:var(--ink2);display:flex;gap:7px;line-height:1.45}
-.exp-list li::before{content:'–';color:var(--accent-m);flex-shrink:0;margin-top:.5px}
+.exp-list{list-style:none;display:flex;flex-direction:column;gap:4px}
+.exp-list li{font-size:13px;color:var(--ink2);display:flex;gap:7px;line-height:1.5}
+.exp-list li::before{content:'–';color:var(--accent-m);flex-shrink:0;margin-top:1px}
 .tools-wrap{display:flex;flex-wrap:wrap;gap:5px}
 .tool-chip{font-size:11px;padding:3px 8px;border-radius:6px;background:var(--bg);color:var(--ink2);border:1px solid var(--border);font-weight:500}
-.result-strip{margin-top:1rem;padding-top:.9rem;border-top:1px solid var(--border);display:flex;gap:0;flex-wrap:wrap}
-.result-item{flex:1;min-width:100px;padding:.6rem 1.1rem;border-right:1px solid var(--border);background:linear-gradient(135deg,var(--accent-l) 0%,#fff 100%)}
-.result-item:last-child{border-right:none}
-.result-item:first-child{border-radius:0 0 0 var(--radius)}
-.result-item:last-child{border-radius:0 0 var(--radius) 0}
-.result-num{font-size:22px;font-weight:700;color:var(--accent-d);line-height:1}
-.result-lbl{font-size:11px;color:var(--ink3);margin-top:3px}
 .exp-card-admin-btns{position:absolute;top:10px;right:10px;display:none;gap:4px}
 .admin-mode .exp-card-admin-btns{display:flex}
-@media(max-width:900px){.exp-body{grid-template-columns:1fr 1fr}.exp-zone-tools{border-left:none;border-top:1px solid var(--border)}.exp-zone+.exp-zone{border-left:1px solid var(--border)}}
-@media(max-width:580px){.exp-body{grid-template-columns:1fr}.exp-zone+.exp-zone{border-left:none;border-top:1px solid var(--border)}}
 
 /* INLINE EDIT */
 .editable{cursor:pointer;border-radius:4px;transition:background .12s;outline:none}
@@ -267,16 +256,21 @@ body.owner-mode img{pointer-events:auto}
 .upload-tab-btn.active{background:var(--bg);color:var(--accent);box-shadow:0 1px 3px rgba(0,0,0,.1)}
 .upload-tab-btn:hover:not(.active){color:var(--ink2)}
 
-/* CMS FLOATING BAR */
-.cms-bar{display:none;position:fixed;bottom:1.25rem;right:1.25rem;z-index:350;background:#1a1a1a;color:#fff;border-radius:var(--radius-lg);padding:10px 14px;box-shadow:0 4px 20px rgba(0,0,0,.25);flex-direction:column;gap:6px;min-width:190px}
-.cms-bar.open{display:flex}
-.cms-bar-title{font-size:10px;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.6px;margin-bottom:2px}
-.cms-action{display:flex;align-items:center;gap:8px;padding:6px 8px;border-radius:7px;font-size:13px;cursor:pointer;transition:background .12s;color:#fff;border:none;background:transparent;width:100%;font-family:inherit}
+/* CMS FAB + popover */
+.cms-fab{display:none;position:fixed;bottom:5rem;right:1rem;z-index:350;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;box-shadow:0 4px 16px rgba(83,74,183,.4);align-items:center;justify-content:center;font-size:20px;transition:all .15s}
+.cms-fab:hover{background:var(--accent-d);transform:scale(1.06)}
+.cms-bar.open+.cms-fab,.cms-bar{display:none} /* hide old bar */
+.cms-popover{display:none;position:fixed;bottom:5.5rem;right:.9rem;z-index:349;background:#1a1a1a;border-radius:var(--radius-lg);padding:.6rem .5rem;box-shadow:0 6px 28px rgba(0,0,0,.35);min-width:220px;max-height:80vh;overflow-y:auto}
+.cms-popover.open{display:block}
+.cms-bar-title{font-size:10px;font-weight:600;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.6px;padding:.3rem .65rem .5rem}
+.cms-action{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;font-size:13px;cursor:pointer;transition:background .12s;color:#fff;border:none;background:transparent;width:100%;font-family:inherit;text-align:left}
 .cms-action:hover{background:rgba(255,255,255,.1)}
-.cms-action i{font-size:14px;color:var(--accent-m);width:16px}
+.cms-action i{font-size:14px;color:var(--accent-m);width:16px;flex-shrink:0}
 .cms-action.danger{color:#f47c7c}
 .cms-action.danger i{color:#f47c7c}
-.cms-sep{height:1px;background:rgba(255,255,255,.1);margin:2px 0}
+.cms-action:disabled{color:rgba(255,255,255,.3);cursor:default}
+.cms-action:disabled i{color:rgba(255,255,255,.2)}
+.cms-sep{height:1px;background:rgba(255,255,255,.1);margin:3px 6px}
 
 /* TOAST */
 .toast{position:fixed;bottom:1.25rem;left:50%;transform:translateX(-50%);background:#1a1a1a;color:#fff;padding:8px 16px;border-radius:20px;font-size:12.5px;z-index:600;opacity:0;pointer-events:none;transition:opacity .2s;white-space:nowrap}
@@ -300,6 +294,39 @@ body.owner-mode img{pointer-events:auto}
 .drag-handle{position:absolute;top:5px;left:5px;display:none;width:24px;height:24px;border-radius:6px;background:rgba(0,0,0,.6);color:#fff;align-items:center;justify-content:center;font-size:12px;cursor:grab;z-index:3;border:none}
 .drag-handle:active{cursor:grabbing}
 .admin-mode .masonry-item:hover .drag-handle{display:flex}
+/* Album card drag reorder */
+.album-card.card-dragging{opacity:.3;transform:scale(.97)}
+.album-card.card-drag-over{outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--radius-lg)}
+
+/* Back to top */
+.back-to-top{position:fixed;bottom:5.5rem;right:1.25rem;z-index:250;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;border:none;cursor:pointer;display:none;align-items:center;justify-content:center;font-size:18px;box-shadow:0 4px 14px rgba(83,74,183,.35);transition:all .2s}
+.back-to-top.visible{display:flex}
+.back-to-top:hover{background:var(--accent-d);transform:translateY(-2px)}
+
+/* Bottom back bar in album detail */
+.detail-bottom-bar{display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem 1.5rem;border-top:1px solid var(--border);margin-top:.5rem}
+.detail-bottom-back{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:500;color:var(--ink2);cursor:pointer;padding:9px 20px;border-radius:var(--radius);border:1px solid var(--border2);background:var(--bg);transition:all .15s}
+.detail-bottom-back:hover{border-color:var(--accent-m);color:var(--accent);background:var(--accent-l)}
+
+/* Slideshow block */
+.slideshow-block{position:relative;border-radius:var(--radius-lg);overflow:hidden;background:#0a0a0a;margin-bottom:12px;user-select:none}
+.slideshow-block .slide{display:none;width:100%;object-fit:contain;background:#111}
+.slideshow-block .slide.ss-active{display:block}
+.ss-ratio-16-9 .slide{aspect-ratio:16/9}
+.ss-ratio-9-16 .slide{aspect-ratio:9/16}
+.ss-ratio-1-1 .slide{aspect-ratio:1/1}
+.ss-ratio-auto .slide{height:auto;max-height:70vh}
+.ss-nav{position:absolute;top:50%;transform:translateY(-50%);width:100%;display:flex;justify-content:space-between;padding:0 8px;pointer-events:none;z-index:2}
+.ss-nav-btn{width:34px;height:34px;border-radius:50%;background:rgba(0,0,0,.5);color:#fff;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;pointer-events:all;transition:background .12s;backdrop-filter:blur(4px)}
+.ss-nav-btn:hover{background:rgba(0,0,0,.75)}
+.ss-dots{position:absolute;bottom:8px;left:50%;transform:translateX(-50%);display:flex;gap:5px;z-index:2}
+.ss-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.45);cursor:pointer;transition:all .2s;border:none;padding:0}
+.ss-dot.ss-dot-active{background:#fff;width:18px;border-radius:3px}
+.ss-counter{position:absolute;top:8px;right:10px;background:rgba(0,0,0,.5);color:#fff;font-size:11px;padding:2px 8px;border-radius:20px;z-index:2;backdrop-filter:blur(4px)}
+.ss-label{padding:.65rem 1rem .75rem;background:var(--bg);font-size:13px;font-weight:500;color:var(--ink)}
+.ss-admin-bar{display:none;padding:.4rem .75rem;background:var(--bg2);border-top:1px solid var(--border);align-items:center;justify-content:space-between;gap:.5rem}
+.admin-mode .ss-admin-bar{display:flex}
+.masonry-item:hover .ss-admin-bar{display:flex}
 
 /* Mobile bottom nav — text only */
 .mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(255,255,255,.97);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--border);padding:0;justify-content:space-around;align-items:stretch;height:52px}
@@ -338,10 +365,10 @@ body.owner-mode img{pointer-events:auto}
 }
 </style>
 </head>
-<body>
+<body class="owner-mode admin-mode">
 
 <nav class="nav">
-  <div class="nav-logo" id="nav-logo" onclick="showPage('home')">AD<span>.</span></div>
+  <div class="nav-logo" id="nav-logo" onclick="showPage('home')">KS<span>.</span></div>
   <div class="nav-center">
     <button class="nav-btn active" data-page="home" onclick="showPage('home')">Home</button>
     <button class="nav-btn" data-page="portfolio" onclick="showPage('portfolio')">Portfolio</button>
@@ -353,7 +380,7 @@ body.owner-mode img{pointer-events:auto}
       <input class="search-input" id="search-input" placeholder="Search albums..." autocomplete="off">
       <div class="search-results" id="search-results"></div>
     </div>
-    <button class="btn admin-only-btn" id="nav-admin-btn" onclick="openModal('admin-modal')" title="Admin">
+    <button class="btn admin-only-btn" id="nav-admin-btn" onclick="openModal('admin-modal')" title="Admin" style="">
       <i class="ti ti-settings" style="font-size:12px"></i> Admin
     </button>
   </div>
@@ -364,7 +391,7 @@ body.owner-mode img{pointer-events:auto}
   <button class="mob-nav-btn active" data-mob-page="home" onclick="showPage('home')">Home</button>
   <button class="mob-nav-btn" data-mob-page="portfolio" onclick="showPage('portfolio')">Portfolio</button>
   <button class="mob-nav-btn" data-mob-page="experience" onclick="showPage('experience')">Experience</button>
-  <button class="mob-nav-btn admin-only-btn hidden" id="mob-admin-btn" onclick="openModal('admin-modal')">Admin</button>
+  <button class="mob-nav-btn admin-only-btn hidden" id="mob-admin-btn" onclick="openModal('admin-modal')" style="">Admin</button>
 </nav>
 
 <!-- HOME PAGE -->
@@ -372,24 +399,24 @@ body.owner-mode img{pointer-events:auto}
   <div class="home-layout">
     <aside class="sidebar" id="sidebar-el">
       <div class="avatar-wrap">
-        <div class="avatar" id="sidebar-avatar" onclick="isAdmin&&openAvatarModal()" title="">
-          <span id="avatar-initials">AD</span>
+        <div class="avatar" id="sidebar-avatar" onclick="isAdmin&amp;&amp;openAvatarModal()" title="">
+          <span id="avatar-initials">KS</span>
           <div class="avatar-edit-overlay"><i class="ti ti-camera"></i></div>
         </div>
-        <div class="s-name editable" id="s-name" data-field="name" contenteditable="false">Art Director</div>
-        <div class="s-role editable" id="s-role" data-field="role" contenteditable="false">Lead Designer · Digital Commerce</div>
+        <div class="s-name editable" id="s-name" data-field="name" contenteditable="true">krissha Soisila</div>
+        <div class="s-role editable" id="s-role" data-field="role" contenteditable="true">Lead Designer | Digital Commerce &amp; Design Operations</div>
       </div>
       <div>
         <div class="eyebrow">About</div>
-        <p class="s-bio editable" id="s-bio" data-field="bio" contenteditable="false">Creative lead with 7+ years in digital commerce design. Specialising in campaign systems, design operations, and AI-assisted production workflows for retail brands at scale.</p>
+        <p class="s-bio editable" id="s-bio" data-field="bio" contenteditable="true">Lead Designer specializing in Digital Commerce, E-Commerce Experience, and Brand Communication, with 9+ years of experience creating impactful design solutions across digital platforms.</p>
       </div>
       <div>
         <div class="eyebrow">Skills</div>
-        <div class="skill-cloud" id="s-skill-cloud"></div>
+        <div class="skill-cloud" id="s-skill-cloud"><span class="skill-chip">Art Direction</span><span class="skill-chip">Digital Commerce</span><span class="skill-chip">UI Design</span><span class="skill-chip">Branding</span><span class="skill-chip">Automation</span><span class="skill-chip">AI Workflow</span><span class="skill-chip">Figma</span><span class="skill-chip">Adobe CC</span><span class="skill-chip">After Effects</span></div>
       </div>
       <div>
         <div class="eyebrow">Contact</div>
-        <div class="contact-list" id="s-contact"></div>
+        <div class="contact-list" id="s-contact"><a class="contact-row" href="mailto:krissha.soisila@gmail.com.com"><i class="ti ti-mail"></i>krissha.soisila@gmail.com.com</a></div>
       </div>
       <div>
         <div class="eyebrow">Links</div>
@@ -402,18 +429,382 @@ body.owner-mode img{pointer-events:auto}
     <main class="gallery-area">
       <div class="gallery-top">
         <span class="gallery-heading" id="gallery-heading">Recent work</span>
-        <span class="count-badge" id="gallery-count">0 albums</span>
+        <span class="count-badge" id="gallery-count">12 albums</span>
       </div>
-      <div class="filter-bar" id="filter-bar"></div>
-      <div class="tag-filter-row" id="tag-filter-row"></div>
-      <div class="album-grid" id="album-grid"></div>
+      <div class="filter-bar" id="filter-bar"><span class="filter-chip active" onclick="setCoFilter('all',this)">All</span><span class="filter-chip " onclick="setCoFilter('co1',this)">Worldtech Electronic Co.,Ltd.</span><span class="filter-chip " onclick="setCoFilter('co2',this)">Designer E-Merchandiser – Biotherm (Contract)</span><span class="filter-chip " onclick="setCoFilter('co3',this)">Global Jet ECommerce (Thailand) Co., Ltd.</span><span class="filter-chip " onclick="setCoFilter('co4',this)">BUILKONE Group Co.,Ltd. : Designer</span></div>
+      <div class="tag-filter-row" id="tag-filter-row"><span class="tag-filter-label"><i class="ti ti-tag" style="font-size:11px;vertical-align:-1px"></i> Tags:</span><span class="tag-filter-chip active" onclick="setTagFilter('all',this)">All</span><span class="tag-filter-chip " onclick="setTagFilter('Campaign',this)">Campaign</span><span class="tag-filter-chip " onclick="setTagFilter('Key Visual',this)">Key Visual</span><span class="tag-filter-chip " onclick="setTagFilter('Flash Sale',this)">Flash Sale</span><span class="tag-filter-chip " onclick="setTagFilter('E-commerce',this)">E-commerce</span><span class="tag-filter-chip " onclick="setTagFilter('Landing Page',this)">Landing Page</span><span class="tag-filter-chip " onclick="setTagFilter('Branding',this)">Branding</span><span class="tag-filter-chip " onclick="setTagFilter('CRM',this)">CRM</span></div>
+      <div class="album-grid" id="album-grid"><div class="album-card" onclick="openAlbum('al1','home')" draggable="true" ondragstart="albumCardDragStart(event,'al1')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'al1')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('al1')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('al1')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">Worldtech Electronic Co.,Ltd.</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al1')" title="คลิกเพื่อแก้ชื่อ">Mega Campaign 2024</div>
+      <div class="album-tags"><span class="album-tag">Campaign</span><span class="album-tag">Key Visual</span></div>
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
+        <span class="album-date">Jun 2024</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('al2','home')" draggable="true" ondragstart="albumCardDragStart(event,'al2')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'al2')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('al2')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('al2')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1lP26z3J66xXUavIgpEhdv4mXnYUPyPk8&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1-WPCuDJ2VEhxXGeSdc8IQy1e9YDTbZXq&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1MqL16Es-T6T-SFv4Dmf6NBKg_AC5myxP&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">Designer E-Merchandiser – Biotherm (Contract)</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al2')" title="คลิกเพื่อแก้ชื่อ">Lazada</div>
+      <div class="album-tags"><span class="album-tag">Flash Sale</span><span class="album-tag">E-commerce</span></div>
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 34 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('al3','home')" draggable="true" ondragstart="albumCardDragStart(event,'al3')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'al3')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('al3')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('al3')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">Global Jet ECommerce (Thailand) Co., Ltd.</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al3')" title="คลิกเพื่อแก้ชื่อ">Commerce Landing Page</div>
+      <div class="album-tags"><span class="album-tag">Landing Page</span></div>
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
+        <span class="album-date">Mar 2024</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('al4','home')" draggable="true" ondragstart="albumCardDragStart(event,'al4')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'al4')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('al4')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('al4')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">Worldtech Electronic Co.,Ltd.</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al4')" title="คลิกเพื่อแก้ชื่อ">Brand Identity 2023</div>
+      <div class="album-tags"><span class="album-tag">Branding</span></div>
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
+        <span class="album-date">Dec 2023</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('al5','home')" draggable="true" ondragstart="albumCardDragStart(event,'al5')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'al5')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('al5')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('al5')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=14Ow9X68I5DBD4_7U7CRXAFG4E6qoGcLA&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1RnhI0F0iLzusvzdfg309W7a_QNqneQNi&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1TjYP8h-tmi_B4DY_6JDebGtB4e5JRi0r&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">Designer E-Merchandiser – Biotherm (Contract)</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'al5')" title="คลิกเพื่อแก้ชื่อ">CRM Campaign Series</div>
+      <div class="album-tags"><span class="album-tag">CRM</span><span class="album-tag">Campaign</span></div>
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 23 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812093057557133','home')" draggable="true" ondragstart="albumCardDragStart(event,'id17812093057557133')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'id17812093057557133')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('id17812093057557133')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('id17812093057557133')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1RvlW5bT7j2k0nPRR3JQxepNOMuzVcx-m&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1c2nEotAJag0ddwIa28_pO2U_6xWzb0eF&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1dRpGXqSLEAmYQzHlD0Gc6Wg-VUZbYwK4&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812093057557133')" title="คลิกเพื่อแก้ชื่อ">YELLO</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 69 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812091226299173','home')" draggable="true" ondragstart="albumCardDragStart(event,'id17812091226299173')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'id17812091226299173')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('id17812091226299173')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('id17812091226299173')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1_-wU7Qg1zAVjoesSlWezpWt4fbo_KwoQ&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1okdUk3duQ0xno1BSKNhn-atHBvlwBucU&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1B_XfoKhSsDRXAVPbWxf-rGDt3dUPQ8sL&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812091226299173')" title="คลิกเพื่อแก้ชื่อ">BUILK</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 46 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812092545597700','home')" draggable="true" ondragstart="albumCardDragStart(event,'id17812092545597700')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'id17812092545597700')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('id17812092545597700')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('id17812092545597700')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1LbaRVRr1EMb8B4-fchGwfG-j13fRnGkv&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1IM9G55c6E2WzTcE43GTIsU7daY-T7Sg8&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=13F-uG05nUSuqMQtgwNPAFLFjyaVJmsRG&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812092545597700')" title="คลิกเพื่อแก้ชื่อ">PJM</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 49 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812095837988343','home')" draggable="true" ondragstart="albumCardDragStart(event,'id17812095837988343')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'id17812095837988343')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('id17812095837988343')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('id17812095837988343')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1sXHLJWDUnYxlR8YKIaJDRoJaBKQMlN4P&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1VeVP0zFrhgX0jUhec6ReMKBbLs3YMFef&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1AAMFaGU6SzRPtD2yBgVS2Ny0IDcrUnCc&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812095837988343')" title="คลิกเพื่อแก้ชื่อ">Builkone JBL Ploy</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 45 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812113697876794','home')" draggable="true" ondragstart="albumCardDragStart(event,'id17812113697876794')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'id17812113697876794')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('id17812113697876794')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('id17812113697876794')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1OoLt8_cousNVbYE5h25su7FG_AlX9jmf&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1kIW8a9WP06IwiJ-96vYx89tGrzwH-7IH&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=10Ew5RivaPp9jOWzbLf1PH-M3ThpWpYyQ&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812113697876794')" title="คลิกเพื่อแก้ชื่อ">Infographic</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 33 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812118989683869','home')" draggable="true" ondragstart="albumCardDragStart(event,'id17812118989683869')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'id17812118989683869')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('id17812118989683869')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('id17812118989683869')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1OKGlYWXTn7spH-iR0XDl0FkmfBF_i6z_&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1OT8jBeQe9vzcc8amuAG76DwDNyt1XtVk&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1DVBBNGJTyfDUNaR3dy-AbfTZ1q-7bqvp&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812118989683869')" title="คลิกเพื่อแก้ชื่อ">Builk GO</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 22 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812121416775','home')" draggable="true" ondragstart="albumCardDragStart(event,'id17812121416775')" ondragover="albumCardDragOver(event)" ondragleave="albumCardDragLeave(event)" ondragend="albumCardDragEnd(event)" ondrop="albumCardDrop(event,'id17812121416775')">
+    <div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('id17812121416775')" title="Edit"><i class="ti ti-edit"></i></button>
+      <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('id17812121416775')" title="Delete"><i class="ti ti-trash"></i></button>
+    </div>
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1Z7hXV6A7ZprHdvyhqBDmJ_XmZ-T9NEoz&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1iQLCP8cxfmczFTkfVx_P205omaDzLLBO&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1qsbwQC9YWqFy4kD-2G6uGUZVXUThzg83&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title editable" contenteditable="true" onclick="event.stopPropagation()" onkeydown="if(event.key==='Enter'){event.preventDefault();this.blur()}" onblur="saveAlbumTitleInline(this,'id17812121416775')" title="คลิกเพื่อแก้ชื่อ">HBEX</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 14 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div></div>
     </main>
   </div>
 </div>
 
 <!-- PORTFOLIO PAGE -->
 <div id="page-portfolio" class="page">
-  <div class="portfolio-page" id="portfolio-content"></div>
+  <div class="portfolio-page" id="portfolio-content"><div class="co-section">
+      <div class="co-header">
+        <span class="co-name-h editable" data-co-id="co1" contenteditable="true" onblur="saveCoNameInline(this,'co1')">Worldtech Electronic Co.,Ltd.</span>
+        <span class="co-period-h editable" data-co-period="co1" contenteditable="true" onblur="saveCoPeriodInline(this,'co1')">May 2023 - Present (3 years 2 months)</span>
+        
+      </div>
+      <div class="co-albums"><div class="album-card" onclick="openAlbum('al1','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">Worldtech Electronic Co.,Ltd.</div>
+      <div class="album-title ">Mega Campaign 2024</div>
+      <div class="album-tags"><span class="album-tag">Campaign</span><span class="album-tag">Key Visual</span></div>
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
+        <span class="album-date">Jun 2024</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('al4','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">Worldtech Electronic Co.,Ltd.</div>
+      <div class="album-title ">Brand Identity 2023</div>
+      <div class="album-tags"><span class="album-tag">Branding</span></div>
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
+        <span class="album-date">Dec 2023</span>
+      </div>
+    </div>
+  </div></div>
+    </div><div class="co-section">
+      <div class="co-header">
+        <span class="co-name-h editable" data-co-id="co2" contenteditable="true" onblur="saveCoNameInline(this,'co2')">Designer E-Merchandiser – Biotherm (Contract)</span>
+        <span class="co-period-h editable" data-co-period="co2" contenteditable="true" onblur="saveCoPeriodInline(this,'co2')">Mar 2023 - May 2023 (3 months)</span>
+        
+      </div>
+      <div class="co-albums"><div class="album-card" onclick="openAlbum('al2','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1lP26z3J66xXUavIgpEhdv4mXnYUPyPk8&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1-WPCuDJ2VEhxXGeSdc8IQy1e9YDTbZXq&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1MqL16Es-T6T-SFv4Dmf6NBKg_AC5myxP&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">Designer E-Merchandiser – Biotherm (Contract)</div>
+      <div class="album-title ">Lazada</div>
+      <div class="album-tags"><span class="album-tag">Flash Sale</span><span class="album-tag">E-commerce</span></div>
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 34 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('al5','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=14Ow9X68I5DBD4_7U7CRXAFG4E6qoGcLA&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1RnhI0F0iLzusvzdfg309W7a_QNqneQNi&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1TjYP8h-tmi_B4DY_6JDebGtB4e5JRi0r&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">Designer E-Merchandiser – Biotherm (Contract)</div>
+      <div class="album-title ">CRM Campaign Series</div>
+      <div class="album-tags"><span class="album-tag">CRM</span><span class="album-tag">Campaign</span></div>
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 23 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div></div>
+    </div><div class="co-section">
+      <div class="co-header">
+        <span class="co-name-h editable" data-co-id="co3" contenteditable="true" onblur="saveCoNameInline(this,'co3')">Global Jet ECommerce (Thailand) Co., Ltd.</span>
+        <span class="co-period-h editable" data-co-period="co3" contenteditable="true" onblur="saveCoPeriodInline(this,'co3')">(Jun 2022 - Feb 2023)</span>
+        
+      </div>
+      <div class="co-albums"><div class="album-card" onclick="openAlbum('al3','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><div class="ph">🎨</div></div><div class="col-cell"><div class="ph">✦</div></div><div class="col-cell"><div class="ph">◆</div></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">Global Jet ECommerce (Thailand) Co., Ltd.</div>
+      <div class="album-title ">Commerce Landing Page</div>
+      <div class="album-tags"><span class="album-tag">Landing Page</span></div>
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 0 works</span>
+        <span class="album-date">Mar 2024</span>
+      </div>
+    </div>
+  </div></div>
+    </div><div class="co-section">
+      <div class="co-header">
+        <span class="co-name-h editable" data-co-id="co4" contenteditable="true" onblur="saveCoNameInline(this,'co4')">BUILKONE Group Co.,Ltd. : Designer</span>
+        <span class="co-period-h editable" data-co-period="co4" contenteditable="true" onblur="saveCoPeriodInline(this,'co4')">(Jul 2018 - Oct 2021)</span>
+        
+      </div>
+      <div class="co-albums"><div class="album-card" onclick="openAlbum('id17812093057557133','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1RvlW5bT7j2k0nPRR3JQxepNOMuzVcx-m&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1c2nEotAJag0ddwIa28_pO2U_6xWzb0eF&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1dRpGXqSLEAmYQzHlD0Gc6Wg-VUZbYwK4&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title ">YELLO</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 69 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812091226299173','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1_-wU7Qg1zAVjoesSlWezpWt4fbo_KwoQ&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1okdUk3duQ0xno1BSKNhn-atHBvlwBucU&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1B_XfoKhSsDRXAVPbWxf-rGDt3dUPQ8sL&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title ">BUILK</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 46 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812092545597700','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1LbaRVRr1EMb8B4-fchGwfG-j13fRnGkv&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1IM9G55c6E2WzTcE43GTIsU7daY-T7Sg8&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=13F-uG05nUSuqMQtgwNPAFLFjyaVJmsRG&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title ">PJM</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 49 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812095837988343','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1sXHLJWDUnYxlR8YKIaJDRoJaBKQMlN4P&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1VeVP0zFrhgX0jUhec6ReMKBbLs3YMFef&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1AAMFaGU6SzRPtD2yBgVS2Ny0IDcrUnCc&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title ">Builkone JBL Ploy</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 45 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812113697876794','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1OoLt8_cousNVbYE5h25su7FG_AlX9jmf&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1kIW8a9WP06IwiJ-96vYx89tGrzwH-7IH&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=10Ew5RivaPp9jOWzbLf1PH-M3ThpWpYyQ&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title ">Infographic</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 33 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812118989683869','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1OKGlYWXTn7spH-iR0XDl0FkmfBF_i6z_&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1OT8jBeQe9vzcc8amuAG76DwDNyt1XtVk&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1DVBBNGJTyfDUNaR3dy-AbfTZ1q-7bqvp&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title ">Builk GO</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 22 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div><div class="album-card" onclick="openAlbum('id17812121416775','portfolio')">
+    
+    <div class="collage"><div class="col-cell col-a"><img src="https://drive.google.com/thumbnail?id=1Z7hXV6A7ZprHdvyhqBDmJ_XmZ-T9NEoz&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1iQLCP8cxfmczFTkfVx_P205omaDzLLBO&amp;sz=w1600" alt="" loading="lazy"></div><div class="col-cell"><img src="https://drive.google.com/thumbnail?id=1qsbwQC9YWqFy4kD-2G6uGUZVXUThzg83&amp;sz=w1600" alt="" loading="lazy"></div></div>
+    <div class="album-info">
+      <div class="album-co-lbl">BUILKONE Group Co.,Ltd. : Designer</div>
+      <div class="album-title ">HBEX</div>
+      
+      <div class="album-meta-row">
+        <span class="album-count"><i class="ti ti-photo" style="font-size:10px;vertical-align:-1px"></i> 14 works</span>
+        <span class="album-date">Jun 2026</span>
+      </div>
+    </div>
+  </div></div>
+    </div></div>
 </div>
 
 <!-- ALBUM DETAIL PAGE -->
@@ -422,12 +813,11 @@ body.owner-mode img{pointer-events:auto}
     <div class="detail-header">
       <button class="back-btn" id="back-btn"><i class="ti ti-arrow-left"></i> Back</button>
       <div class="detail-info">
-        <div class="detail-co" id="detail-co"></div>
-        <div class="detail-title editable" id="detail-title" contenteditable="false"></div>
-        <div class="detail-sub" id="detail-sub"></div>
+        <div class="detail-co" id="detail-co">Designer E-Merchandiser – Biotherm (Contract)</div>
+        <div class="detail-title editable" id="detail-title" contenteditable="true">CRM Campaign Series</div>
+        <div class="detail-sub" id="detail-sub">23 images</div>
       </div>
-      <!-- Column switcher — Admin only -->
-      <div class="col-switcher admin-only-btn" id="col-switcher" title="จำนวนคอลัมน์" style="display:none">
+      <div class="col-switcher admin-only-btn" id="col-switcher" title="จำนวนคอลัมน์" style="">
         <button class="col-btn" onclick="setMasonryCols(1)">1</button>
         <button class="col-btn" onclick="setMasonryCols(2)">2</button>
         <button class="col-btn active" onclick="setMasonryCols(3)">3</button>
@@ -435,11 +825,87 @@ body.owner-mode img{pointer-events:auto}
         <button class="col-btn" onclick="setMasonryCols(5)">5</button>
         <button class="col-btn" onclick="setMasonryCols(6)">6</button>
       </div>
-      <div id="detail-admin-row" class="hidden" style="display:flex;gap:6px;align-items:center">
+      <div id="detail-admin-row" class="hidden" style="display:flex;gap:6px;align-items:center;flex-wrap:wrap">
+        <button class="btn btn-sm" onclick="openAddSlideshowModal()"><i class="ti ti-slideshow"></i> Add Slideshow</button>
         <button class="btn btn-sm btn-primary" onclick="openAddImageModal()"><i class="ti ti-plus"></i> Add Images</button>
       </div>
     </div>
-    <div id="masonry-grid"></div>
+    <div id="masonry-grid" class="masonry cols-3" style="--cols: 3;"><div class="masonry-item" draggable="false" data-img-id="id17812129467181705" onclick="openLightbox(0)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=14Ow9X68I5DBD4_7U7CRXAFG4E6qoGcLA&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812127962843173" onclick="openLightbox(1)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1RnhI0F0iLzusvzdfg309W7a_QNqneQNi&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129503804899" onclick="openLightbox(2)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1TjYP8h-tmi_B4DY_6JDebGtB4e5JRi0r&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812127962843931" onclick="openLightbox(3)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1ueHD7Mii98BKP-XZ2sPH3w0ZWvuOD5XU&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812127962845124" onclick="openLightbox(4)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1fZIrgNL0TklKhK2uQZD_cVjUmtfCtCoy&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812127962843470" onclick="openLightbox(5)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1jeSgvOj77N7mDSbXrOhVJiORgZgLG_zP&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129427673329" onclick="openLightbox(6)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1RnhI0F0iLzusvzdfg309W7a_QNqneQNi&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129427677337" onclick="openLightbox(7)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1ueHD7Mii98BKP-XZ2sPH3w0ZWvuOD5XU&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129427679951" onclick="openLightbox(8)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1fZIrgNL0TklKhK2uQZD_cVjUmtfCtCoy&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129427672827" onclick="openLightbox(9)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1jeSgvOj77N7mDSbXrOhVJiORgZgLG_zP&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448403535" onclick="openLightbox(10)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1eCoXo6t1DAQ_7gJoOUY8CtbzSPp6Dgkp&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448406311" onclick="openLightbox(11)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1KcW2ondyl6jUGx3A0LLJAxKop-Jzo6Of&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448407999" onclick="openLightbox(12)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1n30ndf5jBhhKVdQniqDq0vP5ybpNaN0i&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448406102" onclick="openLightbox(13)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=15S5p2jB1v6kouTFfyPpiT0ZdvB7_204_&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448402550" onclick="openLightbox(14)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1ZRemoMNxLEKmzmvQHudCIDSIPOVTAoXc&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129448401445" onclick="openLightbox(15)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1Cf4Pm2YORyCgQACKCf1RCPlSJt7BsmIh&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129467186403" onclick="openLightbox(16)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1dw0JKksuML3352tqs2S7UnReNgSPKaLA&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129467184809" onclick="openLightbox(17)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1D6CxRcTJS141CUYHpa0q7tuei7tfYAUh&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129482584519" onclick="openLightbox(18)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1Q-XnYZ4mafQbjaB94qe17WrrMoZMF2Eb&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129503801424" onclick="openLightbox(19)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1hbYBkaBg9yOGghIVBE2vso8LnRWhMRAo&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129503804857" onclick="openLightbox(20)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1yMCfleTV1lsl2wCyzw9u8fluEEfr93OF&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129503801838" onclick="openLightbox(21)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1zoSrXY8TwoDWyOTw6jbG5wIVIycjC7fT&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div><div class="masonry-item" draggable="false" data-img-id="id17812129521827392" onclick="openLightbox(22)" ondragstart="dragStart(event,'al5')" ondragover="dragOver(event)" ondragleave="dragLeave(event)" ondrop="dragDrop(event,'al5')" ondragend="dragEnd(event)">
+      <img src="https://drive.google.com/thumbnail?id=1a_-9zHtUYnyI4K-mA6OVVmF4Bq4pcDaM&amp;sz=w1600" alt="Image" loading="lazy">
+      
+    </div></div>
+    <!-- Bottom back button -->
+    <div class="detail-bottom-bar">
+      <button class="detail-bottom-back" onclick="showPage(prevPage)">
+        <i class="ti ti-arrow-left"></i> กลับไปหน้าก่อนหน้า
+      </button>
+    </div>
   </div>
 </div>
 
@@ -584,10 +1050,10 @@ body.owner-mode img{pointer-events:auto}
     <div id="upload-tab-upload">
       <div class="upload-drop" id="upload-drop" onclick="document.getElementById('file-input').click()" ondragover="handleDragOver(event)" ondragleave="handleDragLeave(event)" ondrop="handleDrop(event)">
         <i class="ti ti-cloud-upload"></i>
-        <p>Click or drag & drop images here</p>
+        <p>Click or drag &amp; drop images here</p>
         <span>PNG, JPG, WEBP — multiple files OK</span>
       </div>
-      <input type="file" id="file-input" multiple accept="image/*" class="hidden" onchange="handleFileInput(event)">
+      <input type="file" id="file-input" multiple="" accept="image/*" class="hidden" onchange="handleFileInput(event)">
     </div>
 
     <!-- Tab: Google Drive -->
@@ -621,7 +1087,7 @@ body.owner-mode img{pointer-events:auto}
 
         <!-- Code block — textarea ให้ copy ได้ตรง ไม่ผ่าน clipboard API -->
         <div style="position:relative;margin-bottom:.75rem">
-          <textarea id="gas-code-block" readonly onclick="this.select()" style="width:100%;background:#1a1a1a;border-radius:var(--radius);padding:.9rem 1rem;font-family:monospace;font-size:11.5px;color:#a8ff78;line-height:1.7;border:none;resize:none;outline:none;height:200px;cursor:text;white-space:pre;overflow-x:auto;overflow-y:auto"></textarea>
+          <textarea id="gas-code-block" readonly="" onclick="this.select()" style="width:100%;background:#1a1a1a;border-radius:var(--radius);padding:.9rem 1rem;font-family:monospace;font-size:11.5px;color:#a8ff78;line-height:1.7;border:none;resize:none;outline:none;height:200px;cursor:text;white-space:pre;overflow-x:auto;overflow-y:auto"></textarea>
           <button onclick="copyScriptCode()" style="position:absolute;top:8px;right:8px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;border-radius:6px;padding:4px 12px;font-size:11px;cursor:pointer;font-family:inherit;font-weight:500" id="copy-script-btn">Copy</button>
         </div>
 
@@ -650,7 +1116,8 @@ body.owner-mode img{pointer-events:auto}
         </div>
         <div class="field">
           <label>วาง Google Drive Folder URL (หรือรูปเดี่ยว — ทีละบรรทัด)</label>
-          <textarea id="gdrive-urls" rows="4" placeholder="https://drive.google.com/drive/folders/1Yr3cKu4PIbg8FEy6FaLyLU1tDadd4l37?usp=sharing&#10;https://drive.google.com/file/d/FILE_ID/view"></textarea>
+          <textarea id="gdrive-urls" rows="4" placeholder="https://drive.google.com/drive/folders/1Yr3cKu4PIbg8FEy6FaLyLU1tDadd4l37?usp=sharing
+https://drive.google.com/file/d/FILE_ID/view"></textarea>
         </div>
         <button class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:.75rem" onclick="processDriveUrls()">
           <i class="ti ti-refresh" style="font-size:13px"></i> โหลดรูปจาก Drive
@@ -686,44 +1153,157 @@ body.owner-mode img{pointer-events:auto}
       <div class="field"><label>Project Name</label><input id="exp-proj" placeholder="Digital Commerce System"></div>
       <div class="field"><label>Period</label><input id="exp-period" placeholder="2022 – 2025"></div>
     </div>
-    <div class="field"><label>Description</label><textarea id="exp-desc" rows="3" placeholder="Overview of the project and your role..."></textarea></div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:.5rem 1rem">
-      <div class="field">
-        <label>Responsibilities <span style="font-weight:400;color:var(--ink3)">(one per line)</span></label>
-        <textarea id="exp-resp" rows="5" placeholder="Campaign management&#10;Homepage direction&#10;Product landing pages"></textarea>
-      </div>
-      <div class="field">
-        <label>Workflow Improvements <span style="font-weight:400;color:var(--ink3)">(one per line)</span></label>
-        <textarea id="exp-workflow" rows="5" placeholder="Built design system&#10;Automation via GAS"></textarea>
-      </div>
-    </div>
-    <div class="field"><label>Tools Used <span style="font-weight:400;color:var(--ink3)">(comma separated)</span></label>
-      <input id="exp-tools" placeholder="Figma, Photoshop, Illustrator...">
+    <div class="field"><label>Description</label><textarea id="exp-desc" rows="2" placeholder="Overview of the project and your role..."></textarea></div>
+
+    <!-- Main fields: Responsibilities then Tools stacked vertically -->
+    <div class="field">
+      <label>Responsibilities <span style="font-weight:400;color:var(--ink3)">(one per line)</span></label>
+      <textarea id="exp-resp" rows="5" placeholder="Campaign management
+Homepage direction
+Product landing pages"></textarea>
     </div>
     <div class="field">
-      <label>Results / Achievements <span style="font-weight:400;color:var(--ink3)">(format: number | label, one per line)</span></label>
-      <textarea id="exp-results" rows="3" placeholder="5+ | Sub-brands managed&#10;300+ | Assets per month&#10;40% | Production time saved"></textarea>
+      <label>Tools Used <span style="font-weight:400;color:var(--ink3)">(comma separated)</span></label>
+      <textarea id="exp-tools" rows="3" placeholder="Figma, Photoshop, Illustrator..."></textarea>
     </div>
+
+    <!-- Workflow — optional toggle -->
+    <div style="margin-bottom:.75rem">
+      <button type="button" onclick="toggleWorkflowField()" id="workflow-toggle-btn" style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--accent);background:var(--accent-l);border:1px solid var(--accent-m);border-radius:20px;padding:4px 12px;cursor:pointer;font-family:inherit;font-weight:500;transition:all .12s">
+        <i class="ti ti-plus" id="workflow-toggle-icon" style="font-size:13px"></i>
+        <span id="workflow-toggle-label">Add Workflow column</span>
+      </button>
+      <div id="workflow-field" class="hidden" style="margin-top:.75rem">
+        <div class="field" style="margin:0">
+          <label>Workflow Improvements <span style="font-weight:400;color:var(--ink3)">(one per line)</span></label>
+          <textarea id="exp-workflow" rows="4" placeholder="Built design system
+Automation via GAS
+AI-assisted pipeline"></textarea>
+        </div>
+      </div>
+    </div>
+
     <div class="modal-footer">
       <button class="btn" onclick="closeModal('exp-modal')">Cancel</button>
-      <button class="btn btn-primary" onclick="saveExpCard()">Save</button>
+      <button class="btn btn-primary" onclick="saveExpCard()"><i class="ti ti-check" style="font-size:13px"></i> Confirm &amp; Save</button>
     </div>
   </div>
 </div>
 
-<!-- CMS Floating Bar -->
-<div class="cms-bar" id="cms-bar">
+<!-- CMS FAB -->
+<button class="cms-fab" id="cms-fab" onclick="toggleCmsMenu()" title="CMS Admin" style="display: flex;">
+  <i class="ti ti-settings"></i>
+</button>
+
+<!-- CMS Popover Menu -->
+<div class="cms-popover open" id="cms-popover">
   <div class="cms-bar-title">CMS Admin</div>
-  <button class="cms-action" onclick="openModal('profile-modal');loadProfileForm()"><i class="ti ti-user-edit"></i> Edit Profile</button>
-  <button class="cms-action" onclick="openAddCompanyModal()"><i class="ti ti-building-plus"></i> Add Company</button>
-  <button class="cms-action" onclick="openAddAlbumModal()"><i class="ti ti-folder-plus"></i> Add Album</button>
-  <button class="cms-action" onclick="openAddExpModal()"><i class="ti ti-briefcase-plus"></i> Add Experience</button>
+  <button class="cms-action" onclick="openModal('profile-modal');loadProfileForm();closeCmsMenu()"><i class="ti ti-user-edit"></i> Edit Profile</button>
+  <button class="cms-action" onclick="openAddCompanyModal();closeCmsMenu()"><i class="ti ti-building-plus"></i> Add Company</button>
+  <button class="cms-action" onclick="openAddAlbumModal();closeCmsMenu()"><i class="ti ti-folder-plus"></i> Add Album</button>
+  <button class="cms-action" onclick="openAddExpModal();closeCmsMenu()"><i class="ti ti-briefcase-plus"></i> Add Experience</button>
   <div class="cms-sep"></div>
-  <button class="cms-action" onclick="exitAdmin()" style="color:rgba(255,255,255,.7)"><i class="ti ti-eye" style="color:rgba(255,255,255,.4)"></i> Exit to Owner View</button>
-  <button class="cms-action danger" onclick="goPublic()"><i class="ti ti-world" style="color:#f47c7c"></i> Publish (hide Admin)</button>
+  <button class="cms-action" onclick="undoAction()" id="undo-btn" title="Undo (1 step)" style="color: rgb(255, 255, 255);">
+    <i class="ti ti-arrow-back-up" style="color: var(--accent-m);"></i> Undo
+  </button>
+  <div class="cms-sep"></div>
+  <button class="cms-action" onclick="bakeAndDownload();closeCmsMenu()" style="color:#7ee787"><i class="ti ti-rocket" style="color:#7ee787"></i> Save &amp; Download HTML</button>
+  <button class="cms-action" onclick="exportData();closeCmsMenu()"><i class="ti ti-download"></i> Export Data (.json)</button>
+  <button class="cms-action" onclick="document.getElementById('import-file').click();closeCmsMenu()"><i class="ti ti-upload"></i> Import Data</button>
+  <input type="file" id="import-file" accept=".json" class="hidden" onchange="importData(event)">
+  <div class="cms-sep"></div>
+  <button class="cms-action" onclick="exitAdmin();closeCmsMenu()"><i class="ti ti-eye"></i> Exit to Owner View</button>
+  <button class="cms-action danger" onclick="goPublic();closeCmsMenu()"><i class="ti ti-world"></i> Publish (hide Admin)</button>
 </div>
 
-<div class="toast" id="toast"></div>
+<!-- Back to top -->
+<button class="back-to-top" id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="กลับด้านบน">
+  <i class="ti ti-arrow-up"></i>
+</button>
+
+<!-- Add Slideshow Modal -->
+<div class="modal-overlay" id="slideshow-modal">
+  <div class="modal modal-lg">
+    <button class="modal-x" onclick="closeModal('slideshow-modal')"><i class="ti ti-x"></i></button>
+    <div class="modal-title">เพิ่ม Slideshow</div>
+    <div class="modal-sub">เลือกรูปจากอัลบั้ม หรือ import จาก Google Drive</div>
+
+    <!-- Settings row -->
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.5rem 1rem;margin-bottom:.75rem">
+      <div class="field" style="margin:0">
+        <label>ชื่อ Slideshow</label>
+        <input id="ss-title-input" placeholder="Campaign Highlights">
+      </div>
+      <div class="field" style="margin:0">
+        <label>อัตราส่วน</label>
+        <select id="ss-ratio">
+          <option value="ss-ratio-16-9">16:9 Landscape</option>
+          <option value="ss-ratio-1-1">1:1 Square</option>
+          <option value="ss-ratio-9-16">9:16 Portrait</option>
+          <option value="ss-ratio-auto">Auto</option>
+        </select>
+      </div>
+      <div class="field" style="margin:0">
+        <label>หน่วงเวลา</label>
+        <select id="ss-delay">
+          <option value="2500">2.5s</option>
+          <option value="3000" selected="">3s</option>
+          <option value="4000">4s</option>
+          <option value="5000">5s</option>
+          <option value="0">Manual only</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Source tabs -->
+    <div style="display:flex;gap:4px;background:var(--bg2);padding:4px;border-radius:var(--radius);width:fit-content;margin-bottom:.9rem">
+      <button class="upload-tab-btn active" id="ss-tab-album" onclick="switchSsTab('album')">
+        <i class="ti ti-photo" style="font-size:12px"></i> จากอัลบั้ม
+      </button>
+      <button class="upload-tab-btn" id="ss-tab-drive" onclick="switchSsTab('drive')">
+        <i class="ti ti-brand-google-drive" style="font-size:12px"></i> Google Drive
+      </button>
+    </div>
+
+    <!-- Tab: From album -->
+    <div id="ss-panel-album">
+      <div style="font-size:12px;color:var(--ink3);margin-bottom:6px">คลิกเพื่อเลือก — ตัวเลขแสดงลำดับ</div>
+      <div id="ss-image-picker" style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-height:200px;overflow-y:auto;padding:2px"></div>
+    </div>
+
+    <!-- Tab: Google Drive -->
+    <div id="ss-panel-drive" class="hidden">
+      <!-- GAS URL check -->
+      <div id="ss-gas-ok" class="hidden" style="background:var(--bg2);border-radius:var(--radius);padding:.5rem .9rem;font-size:11.5px;color:var(--ink3);margin-bottom:.75rem;display:flex;align-items:center;justify-content:space-between">
+        <span>🔗 Script URL: <span id="ss-gas-short" style="color:var(--accent);font-weight:500"></span></span>
+      </div>
+      <div id="ss-gas-missing" style="background:#fffbea;border:1px solid #f0d060;border-radius:var(--radius);padding:.75rem;font-size:12.5px;color:#7a5c00;margin-bottom:.75rem">
+        ⚠️ ยังไม่มี Script URL — ไปตั้งค่าใน <b>Add Images → Google Drive</b> ก่อนนะคะ แล้วกลับมาใช้ได้เลย
+      </div>
+      <div class="field">
+        <label>วาง Google Drive Folder หรือรูปเดี่ยว (ทีละบรรทัด)</label>
+        <textarea id="ss-drive-urls" rows="3" placeholder="https://drive.google.com/drive/folders/FOLDER_ID
+https://drive.google.com/file/d/FILE_ID/view"></textarea>
+      </div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;margin-bottom:.75rem" onclick="loadDriveForSs()">
+        <i class="ti ti-refresh" style="font-size:13px"></i> โหลดรูปจาก Drive
+      </button>
+      <div id="ss-drive-status" style="font-size:12px;color:var(--ink2);text-align:center;min-height:16px"></div>
+      <!-- Preview of loaded drive images -->
+      <div id="ss-drive-picker" style="display:grid;grid-template-columns:repeat(5,1fr);gap:6px;max-height:200px;overflow-y:auto;padding:2px;margin-top:.5rem"></div>
+    </div>
+
+    <div style="font-size:12px;color:var(--ink2);margin-top:.75rem">
+      เลือกแล้ว: <b><span id="ss-selected-count">0</span></b> รูป
+    </div>
+    <div class="modal-footer">
+      <button class="btn" onclick="closeModal('slideshow-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="createSlideshow()"><i class="ti ti-slideshow" style="font-size:13px"></i> สร้าง Slideshow</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Admin mode active</div>
 <div class="lightbox" id="lightbox">
   <button class="lb-btn lb-close" onclick="closeLightbox()"><i class="ti ti-x"></i></button>
   <div class="lb-img-wrap" id="lb-img-wrap"><img id="lb-img" src="" alt="" style="pointer-events:none;-webkit-user-drag:none;user-select:none"></div>
@@ -731,7 +1311,7 @@ body.owner-mode img{pointer-events:auto}
     <button class="lb-btn" onclick="lbPrev()"><i class="ti ti-arrow-left"></i></button>
     <span class="lb-info" id="lb-info">1 / 1</span>
     <button class="lb-btn" onclick="lbNext()"><i class="ti ti-arrow-right"></i></button>
-    <a class="lb-btn admin-only-btn" id="lb-dl" download style="color:#fff"><i class="ti ti-download"></i></a>
+    <a class="lb-btn admin-only-btn" id="lb-dl" download="" style="color: rgb(255, 255, 255);"><i class="ti ti-download"></i></a>
   </div>
 </div>
 
@@ -742,7 +1322,7 @@ body.owner-mode img{pointer-events:auto}
 // ═══════════════════════════════
 // DEFAULT DATA
 // ═══════════════════════════════
-const PASS = 'portfolio2024';
+const PASS = 'Kritchaar:3';
 
 // ── Owner / Public mode ──
 // Owner mode = Admin button visible. Public = hidden.
@@ -841,7 +1421,7 @@ const DEF = {
 
 function loadDB(){try{const s=localStorage.getItem('pf_v2');if(s)return JSON.parse(s);}catch(e){}return JSON.parse(JSON.stringify(DEF));}
 function saveDB(){localStorage.setItem('pf_v2',JSON.stringify(DB));}
-let DB=loadDB();
+let DB={"profile":{"name":"krissha Soisila","role":"Lead Designer | Digital Commerce & Design Operations","bio":"Lead Designer specializing in Digital Commerce, E-Commerce Experience, and Brand Communication, with 9+ years of experience creating impactful design solutions across digital platforms.","skills":["Art Direction","Digital Commerce","UI Design","Branding","Automation","AI Workflow","Figma","Adobe CC","After Effects"],"email":"krissha.soisila@gmail.com.com","phone":"","linkedin":"","behance":"","resumeUrl":"","avatar":""},"companies":[{"id":"co1","name":"Worldtech Electronic Co.,Ltd.","period":"May 2023 - Present (3 years 2 months)"},{"id":"co2","name":"Designer E-Merchandiser – Biotherm (Contract)","period":"Mar 2023 - May 2023 (3 months)"},{"id":"co3","name":"Global Jet ECommerce (Thailand) Co., Ltd.","period":"(Jun 2022 - Feb 2023)"},{"id":"co4","name":"BUILKONE Group Co.,Ltd. : Designer","period":"(Jul 2018 - Oct 2021)"}],"albums":[{"id":"al1","name":"Mega Campaign 2024","companyId":"co1","category":"Campaign","tags":["Campaign","Key Visual"],"updatedAt":"Jun 2024"},{"id":"al2","name":"Lazada","companyId":"co2","category":"Homepage","tags":["Flash Sale","E-commerce"],"updatedAt":"Jun 2026"},{"id":"al3","name":"Commerce Landing Page","companyId":"co3","category":"Landing Page","tags":["Landing Page"],"updatedAt":"Mar 2024"},{"id":"al4","name":"Brand Identity 2023","companyId":"co1","category":"Branding","tags":["Branding"],"updatedAt":"Dec 2023"},{"id":"al5","name":"CRM Campaign Series","companyId":"co2","category":"CRM Campaign","tags":["CRM","Campaign"],"updatedAt":"Jun 2026"},{"id":"id17812093057557133","name":"YELLO","companyId":"co4","category":"","tags":[],"updatedAt":"Jun 2026"},{"id":"id17812091226299173","name":"BUILK","companyId":"co4","category":"","tags":[],"updatedAt":"Jun 2026"},{"id":"id17812095837988343","name":"Builkone JBL Ploy","companyId":"co4","category":"","tags":[],"updatedAt":"Jun 2026"},{"id":"id17812092545597700","name":"PJM","companyId":"co4","category":"","tags":[],"updatedAt":"Jun 2026"},{"id":"id17812113697876794","name":"Infographic","companyId":"co4","category":"","tags":[],"updatedAt":"Jun 2026"},{"id":"id17812118989683869","name":"Builk GO","companyId":"co4","category":"","tags":[],"updatedAt":"Jun 2026"},{"id":"id17812121416775","name":"HBEX","companyId":"co4","category":"","tags":[],"updatedAt":"Jun 2026"},{"id":"id17812131431106363","name":"l","companyId":"co4","category":"","tags":[],"updatedAt":"Jun 2026"}],"images":{"al2":[{"id":"id17812055143467400","src":"https://drive.google.com/thumbnail?id=1lP26z3J66xXUavIgpEhdv4mXnYUPyPk8&sz=w1600","alt":"Image"},{"id":"id17812055143464898","src":"https://drive.google.com/thumbnail?id=1-WPCuDJ2VEhxXGeSdc8IQy1e9YDTbZXq&sz=w1600","alt":"Image"},{"id":"id17812055143461216","src":"https://drive.google.com/thumbnail?id=1MqL16Es-T6T-SFv4Dmf6NBKg_AC5myxP&sz=w1600","alt":"Image"},{"id":"id17812055143461608","src":"https://drive.google.com/thumbnail?id=1SrdzgG1Cgl_Riy9etkDFuGfsJjuzuxIV&sz=w1600","alt":"Image"},{"id":"id17812055143468189","src":"https://drive.google.com/thumbnail?id=1ZGZhvL6V0vQtKT1qoPat5H_PzwCQy_U-&sz=w1600","alt":"Image"},{"id":"id17812055163077304","src":"https://drive.google.com/thumbnail?id=1VGhB87VBLX10sF5CqEWkYd2DeeJKK6fS&sz=w1600","alt":"Image"},{"id":"id17812055294151052","src":"https://drive.google.com/thumbnail?id=1CJSkehfK2iaHrC3my4yZJkwiG-omCWdN&sz=w1600","alt":"Image"},{"id":"id178120551630789","src":"https://drive.google.com/thumbnail?id=1saQLLyWtIAeFipB_FHPv3Hf4cgMb_zRD&sz=w1600","alt":"Image"},{"id":"id17812055181325745","src":"https://drive.google.com/thumbnail?id=19bceTEdoNg1R4sR-Vid5cwzvBPUVDqzA&sz=w1600","alt":"Image"},{"id":"id17812055181321208","src":"https://drive.google.com/thumbnail?id=1izGeXhL9xMUIFm1JGGiNJTHy9eVt19W9&sz=w1600","alt":"Image"},{"id":"id17812055181322854","src":"https://drive.google.com/thumbnail?id=1-9TkjRAERv3o8xv63_vFR9Do8Y9J3gSg&sz=w1600","alt":"Image"},{"id":"id17812055198856748","src":"https://drive.google.com/thumbnail?id=1RLdGH7Bf3i8MCx-MbXXmnIQfvEObVZwB&sz=w1600","alt":"Image"},{"id":"id17812055198858023","src":"https://drive.google.com/thumbnail?id=1suyqwpyddZwnLmUMugvyeruq8uxhwBeG&sz=w1600","alt":"Image"},{"id":"id17812055198851599","src":"https://drive.google.com/thumbnail?id=1WlQv1KMkL94K2cJT-JWPGOoCv_C9Elq1&sz=w1600","alt":"Image"},{"id":"id1781205519885187","src":"https://drive.google.com/thumbnail?id=1DekhMd6ZfHFCDuLHXQ5Yr44Y7dA-0x2H&sz=w1600","alt":"Image"},{"id":"id17812055198857657","src":"https://drive.google.com/thumbnail?id=1RxpMHto_SWVygp5g8yY5RZ-rj5z_zzXg&sz=w1600","alt":"Image"},{"id":"id17812055198852728","src":"https://drive.google.com/thumbnail?id=11Q-E1PBaXv9KlTY29L9QM0pfjkCqTCWI&sz=w1600","alt":"Image"},{"id":"id17812055198858516","src":"https://drive.google.com/thumbnail?id=1CPk13e2pLnBlsim5UU_oScHwGkdUlpkn&sz=w1600","alt":"Image"},{"id":"id17812055218365746","src":"https://drive.google.com/thumbnail?id=1yYJkcplqXoOf5h9Uvp5Kf0hvGnR7lIPF&sz=w1600","alt":"Image"},{"id":"id17812055218366943","src":"https://drive.google.com/thumbnail?id=1MtqpKVqvjCKfkGEYWXs0De1XkJ-_PaFS&sz=w1600","alt":"Image"},{"id":"id17812055218363421","src":"https://drive.google.com/thumbnail?id=1Bk0Ro0k-I7zOJaAZ7__jvHQ6-WAS5AMH&sz=w1600","alt":"Image"},{"id":"id17812055218361970","src":"https://drive.google.com/thumbnail?id=1X_sbtEN3CpHcwRadutqcVsUB-uhQ52Jn&sz=w1600","alt":"Image"},{"id":"id17812055238901129","src":"https://drive.google.com/thumbnail?id=1ZEqTiVs2ikDSui8vYr4c1ropTiO0hjZY&sz=w1600","alt":"Image"},{"id":"id17812055238908841","src":"https://drive.google.com/thumbnail?id=1wbQxSFuV1rRUa9BsoFN4oxKqOgGb4mDx&sz=w1600","alt":"Image"},{"id":"id17812055238909299","src":"https://drive.google.com/thumbnail?id=1U2Q1246f7Pkj_fz24beKcEziLcimraRU&sz=w1600","alt":"Image"},{"id":"id17812055256982278","src":"https://drive.google.com/thumbnail?id=1ZLLzbsfSmEkxg7RlGJLjKRSt7Z_Et70w&sz=w1600","alt":"Image"},{"id":"id17812055256987126","src":"https://drive.google.com/thumbnail?id=10AfuNsN8834M42WhabcRNS8aIhvKEMB4&sz=w1600","alt":"Image"},{"id":"id17812055272939966","src":"https://drive.google.com/thumbnail?id=1r88HLngiqJNESqwNuT4N28eD-MzWITFS&sz=w1600","alt":"Image"},{"id":"id17812055294154010","src":"https://drive.google.com/thumbnail?id=1L97crHR_LzfjHp8ezvyp_QISp6K4OgUz&sz=w1600","alt":"Image"},{"id":"id1781205529415161","src":"https://drive.google.com/thumbnail?id=1dMWj6jzejGXyc1hDX6p9J1Po6aDbmzKt&sz=w1600","alt":"Image"},{"id":"id178120552941515","src":"https://drive.google.com/thumbnail?id=13pvBLtIz6y_I7TH0RDE00gIPKcVSXAsJ&sz=w1600","alt":"Image"},{"id":"id17812055313809184","src":"https://drive.google.com/thumbnail?id=1U05__g_h11FpI_y_-omJh2H7hEXRZREZ&sz=w1600","alt":"Image"},{"id":"id17812055313802854","src":"https://drive.google.com/thumbnail?id=1EhSX0lifQ-5YzgFte82PPw0MQNtmJqWb&sz=w1600","alt":"Image"},{"id":"id17812055313802532","src":"https://drive.google.com/thumbnail?id=1922Y-ZkSKFXvhsa-4yDCeesiQKJ3AxSg&sz=w1600","alt":"Image"}],"id17812091226299173":[{"id":"id17812094300536248","src":"https://drive.google.com/thumbnail?id=1_-wU7Qg1zAVjoesSlWezpWt4fbo_KwoQ&sz=w1600","alt":"Image"},{"id":"id1781209430053873","src":"https://drive.google.com/thumbnail?id=1okdUk3duQ0xno1BSKNhn-atHBvlwBucU&sz=w1600","alt":"Image"},{"id":"id17812094300534583","src":"https://drive.google.com/thumbnail?id=1B_XfoKhSsDRXAVPbWxf-rGDt3dUPQ8sL&sz=w1600","alt":"Image"},{"id":"id17812094300532027","src":"https://drive.google.com/thumbnail?id=1LWS2qKSo-xySM8M_R-r4YxHiIqzuoLV2&sz=w1600","alt":"Image"},{"id":"id17812094300538167","src":"https://drive.google.com/thumbnail?id=10nktBMms4nkPORzaKEuPe_7YtjfcuI_1&sz=w1600","alt":"Image"},{"id":"id17812094300533423","src":"https://drive.google.com/thumbnail?id=1GtQlrlqJjXzkOl_QklA0oarr8_0pWsEC&sz=w1600","alt":"Image"},{"id":"id1781209430053932","src":"https://drive.google.com/thumbnail?id=1V4bdHMxNsuoih7_Slytqd-fQLAOZJBEE&sz=w1600","alt":"Image"},{"id":"id17812094300539607","src":"https://drive.google.com/thumbnail?id=1GAwOykapE_UqaQaNjvusrCK2gb0xN8EC&sz=w1600","alt":"Image"},{"id":"id17812094300537696","src":"https://drive.google.com/thumbnail?id=10X3x1maupKfTfDQ92-sefpQw1pKzwUOb&sz=w1600","alt":"Image"},{"id":"id17812094300535357","src":"https://drive.google.com/thumbnail?id=1KefdZpcHMCN8Bkoffz6k_VTLF7nvkrPe&sz=w1600","alt":"Image"},{"id":"id17812094300531217","src":"https://drive.google.com/thumbnail?id=1U4dCUXS7zNh3MI_w97aZJG5hwer7Q6DZ&sz=w1600","alt":"Image"},{"id":"id17812094300534403","src":"https://drive.google.com/thumbnail?id=1S_obiXigGFaKEIPxHbM3DjEk6HNBTlx1&sz=w1600","alt":"Image"},{"id":"id17812094300535778","src":"https://drive.google.com/thumbnail?id=1-foIJlAdmBDQQokRVkkB01uAHm3kQDuB&sz=w1600","alt":"Image"},{"id":"id17812094300538905","src":"https://drive.google.com/thumbnail?id=19ERkYev6TWXuMuuV5butY2d9pVTQZ3RC&sz=w1600","alt":"Image"},{"id":"id17812094300537664","src":"https://drive.google.com/thumbnail?id=1La3o_Nlfa0I5aeQM0A4Y8xpyvZqFXCJt&sz=w1600","alt":"Image"},{"id":"id17812094300533238","src":"https://drive.google.com/thumbnail?id=1fZCNmeqAR-23zZ8959i_PBU3tfESHaV0&sz=w1600","alt":"Image"},{"id":"id1781209430053530","src":"https://drive.google.com/thumbnail?id=1Cm7d_04-jY7oPJgRVEO-B1p5kc0Aq0ne&sz=w1600","alt":"Image"},{"id":"id17812094300538170","src":"https://drive.google.com/thumbnail?id=1EwxPl8UeecOLbq4orivhN_xLxonzBAxZ&sz=w1600","alt":"Image"},{"id":"id17812094300539693","src":"https://drive.google.com/thumbnail?id=179ol22P_11I1vHh5lW17pLJ5ajOivnej&sz=w1600","alt":"Image"},{"id":"id17812094300534736","src":"https://drive.google.com/thumbnail?id=1Hzq9SXBytuFR0FH4_TmVy34yFveese7y&sz=w1600","alt":"Image"},{"id":"id17812094300539537","src":"https://drive.google.com/thumbnail?id=1qBb1tCyJiei6bprCESnOSoTI4HXY3w4p&sz=w1600","alt":"Image"},{"id":"id17812094300532488","src":"https://drive.google.com/thumbnail?id=1wseXFPTxZ_H-VcxIRKOMcmTINElDJgJM&sz=w1600","alt":"Image"},{"id":"id17812094300539358","src":"https://drive.google.com/thumbnail?id=10ehbxL9BiMSp7yyUOuoT2WzDSr0vw7CJ&sz=w1600","alt":"Image"},{"id":"id17812094300533645","src":"https://drive.google.com/thumbnail?id=16qJsoPpVpo5rl2Lkiu2kNzfA3hxQdhUm&sz=w1600","alt":"Image"},{"id":"id17812094300534259","src":"https://drive.google.com/thumbnail?id=1XhFvXEeU3Vg6jJvhPmPWS3TVdXlzfULy&sz=w1600","alt":"Image"},{"id":"id17812094300538950","src":"https://drive.google.com/thumbnail?id=1fZA71iD-rNlZJI7uDe0Cp4l8663Rilm7&sz=w1600","alt":"Image"},{"id":"id17812094300539002","src":"https://drive.google.com/thumbnail?id=1tcgGPh6dzja73t8nStK3hvksfYg0vi9Y&sz=w1600","alt":"Image"},{"id":"id17812094300533804","src":"https://drive.google.com/thumbnail?id=1ODHU8qu7DDZA_SuVzWME19TNOh2K00Tp&sz=w1600","alt":"Image"},{"id":"id17812094300533679","src":"https://drive.google.com/thumbnail?id=1UPosff8nkl7vOCia3Wwo4_axAZsvqe1Q&sz=w1600","alt":"Image"},{"id":"id17812094300532309","src":"https://drive.google.com/thumbnail?id=1VRc8f7W8LJ-HFFsMmKCrkSnxtw_IqvLN&sz=w1600","alt":"Image"},{"id":"id17812094300537792","src":"https://drive.google.com/thumbnail?id=1XhyPfQZQXP7qIt520z4Y6pAPPvnvEk76&sz=w1600","alt":"Image"},{"id":"id17812094300539651","src":"https://drive.google.com/thumbnail?id=1hMPVN4sr2DNCWUQG2Tocbn1B-VniTbZW&sz=w1600","alt":"Image"},{"id":"id17812094300536930","src":"https://drive.google.com/thumbnail?id=1zVLZC79RFaYPW5ocNq_xD6BDo1deT-Yr&sz=w1600","alt":"Image"},{"id":"id17812094300533575","src":"https://drive.google.com/thumbnail?id=18Dp7trG1nol1NFOdyJUMQ14nG8YAwmt-&sz=w1600","alt":"Image"},{"id":"id17812094300534586","src":"https://drive.google.com/thumbnail?id=1Amfjt6ZPihd4ddEy2Zt3TLAnuCy0w38u&sz=w1600","alt":"Image"},{"id":"id17812094300531496","src":"https://drive.google.com/thumbnail?id=1flH1ohnNVTqH_p2cu08L1zHkOJZNxthD&sz=w1600","alt":"Image"},{"id":"id17812094300538341","src":"https://drive.google.com/thumbnail?id=1ubYVcBSfc_8qJeW6juSx2zS5ShDUYFI9&sz=w1600","alt":"Image"},{"id":"id17812094300537754","src":"https://drive.google.com/thumbnail?id=1KKmOEhJzKJ7tpqcnFjbrOga1HjCZ2DgK&sz=w1600","alt":"Image"},{"id":"id17812094300538239","src":"https://drive.google.com/thumbnail?id=148T7vV-fMOz_mx5RF7olnsIGW0PuVzpT&sz=w1600","alt":"Image"},{"id":"id17812094300539353","src":"https://drive.google.com/thumbnail?id=1FQs5SkMZ55jp3AeRK0U2VUMi24C6rjKt&sz=w1600","alt":"Image"},{"id":"id17812094300537988","src":"https://drive.google.com/thumbnail?id=12Yr7nAIfr8Z4Cfxd7kt_bXbZYfWz4HCs&sz=w1600","alt":"Image"},{"id":"id17812094300533206","src":"https://drive.google.com/thumbnail?id=1PfhAUOVSsiiO30QZ96SqoVrniLuiZL1T&sz=w1600","alt":"Image"},{"id":"id17812094300532947","src":"https://drive.google.com/thumbnail?id=1ZehYBHnphvwFAbzFu_W54Zk55ovIUrJR&sz=w1600","alt":"Image"},{"id":"id17812094300538399","src":"https://drive.google.com/thumbnail?id=1syrUi480HE8gzF7mEAhpgW395k5eM8ab&sz=w1600","alt":"Image"},{"id":"id17812094300534232","src":"https://drive.google.com/thumbnail?id=14FISJ220cc3S-cvRWK_Bv-1xoDE4p-N9&sz=w1600","alt":"Image"},{"id":"id17812094300535707","src":"https://drive.google.com/thumbnail?id=1AIS6EU4SDB8xtyxiB8vE5GFHuThNLP9U&sz=w1600","alt":"Image"}],"id17812095837988343":[{"id":"id17812096245007670","src":"https://drive.google.com/thumbnail?id=1sXHLJWDUnYxlR8YKIaJDRoJaBKQMlN4P&sz=w1600","alt":"Image"},{"id":"id17812096245004184","src":"https://drive.google.com/thumbnail?id=1VeVP0zFrhgX0jUhec6ReMKBbLs3YMFef&sz=w1600","alt":"Image"},{"id":"id17812096245005083","src":"https://drive.google.com/thumbnail?id=1AAMFaGU6SzRPtD2yBgVS2Ny0IDcrUnCc&sz=w1600","alt":"Image"},{"id":"id1781209624500188","src":"https://drive.google.com/thumbnail?id=1kcQI4an6-T-eVWcgmas7u6zqRzqEVT7q&sz=w1600","alt":"Image"},{"id":"id17812096245004220","src":"https://drive.google.com/thumbnail?id=1Q8FgsiAtv3fTLQk3NsHPBuD0vElo-II7&sz=w1600","alt":"Image"},{"id":"id17812096245009151","src":"https://drive.google.com/thumbnail?id=190IMdWf62bqtwlKZP0uVug8nH2w8VNfr&sz=w1600","alt":"Image"},{"id":"id17812096245005382","src":"https://drive.google.com/thumbnail?id=17Gem3p1_kSsDaQ-KuI1Sb96bcR0rqyer&sz=w1600","alt":"Image"},{"id":"id17812096245002695","src":"https://drive.google.com/thumbnail?id=1Bb1ezO_tHZ7DbTuu8p4TMfZ3AZJttP_v&sz=w1600","alt":"Image"},{"id":"id17812096245016399","src":"https://drive.google.com/thumbnail?id=1mJAGjx4OrlWavv73dhuFA6s6M8XbOjey&sz=w1600","alt":"Image"},{"id":"id17812096245014933","src":"https://drive.google.com/thumbnail?id=1CqArIcPu8Jp6XuMednjmK2df0SmLrx4r&sz=w1600","alt":"Image"},{"id":"id17812096245016891","src":"https://drive.google.com/thumbnail?id=1JTcQo8B5TZKBhOhjcr2sm_xhYNDv-9FB&sz=w1600","alt":"Image"},{"id":"id17812096245018593","src":"https://drive.google.com/thumbnail?id=1J4ITMKttaMw0mOLbfm1YQVg4W57SRXyC&sz=w1600","alt":"Image"},{"id":"id1781209624501257","src":"https://drive.google.com/thumbnail?id=1jWgumw-GWYzT4efrHrKQtuExfA9Yl4MO&sz=w1600","alt":"Image"},{"id":"id17812097862452482","src":"https://drive.google.com/thumbnail?id=1BZ09uq0j0ZRTuuXKS6wM-8vG_-9x2PZY&sz=w1600","alt":"Image"},{"id":"id17812097862458233","src":"https://drive.google.com/thumbnail?id=11jD8sL8COx_HG30NLx30nSkpvUoLqfR1&sz=w1600","alt":"Image"},{"id":"id17812097862459504","src":"https://drive.google.com/thumbnail?id=1HR_sU2llqABdbIvFLo5NmYhcBBYoZvkB&sz=w1600","alt":"Image"},{"id":"id17812097862455449","src":"https://drive.google.com/thumbnail?id=12YLDFT1Sdslzc-Bo4Sv0c4rZxZM6ObXM&sz=w1600","alt":"Image"},{"id":"id17812097862456035","src":"https://drive.google.com/thumbnail?id=18ZJCRJyrvMmMSTggUE4nImd3pHUaHvch&sz=w1600","alt":"Image"},{"id":"id17812097882208637","src":"https://drive.google.com/thumbnail?id=1swRsCGMsKZmdhNi3V0HwByhKfFD--tZc&sz=w1600","alt":"Image"},{"id":"id17812097882201596","src":"https://drive.google.com/thumbnail?id=1GFwrEohqj3pzQVmq0hjf0DnCDI6MikEj&sz=w1600","alt":"Image"},{"id":"id17812097882201339","src":"https://drive.google.com/thumbnail?id=1nKqw2jqllC0Hx3Bv5G9zlOzbzk1VbadI&sz=w1600","alt":"Image"},{"id":"id17812097882202599","src":"https://drive.google.com/thumbnail?id=1fmYWQIB4OyErBF940gMP3cX-opN-pwzL&sz=w1600","alt":"Image"},{"id":"id17812097882202618","src":"https://drive.google.com/thumbnail?id=1dqrdPPtx6JkTCLHIBETQd55yDiCU2ZpN&sz=w1600","alt":"Image"},{"id":"id17812097882203682","src":"https://drive.google.com/thumbnail?id=1dsNaRqExjTOOBuWuJf_BRk1RRUhn3yFg&sz=w1600","alt":"Image"},{"id":"id17812097882204624","src":"https://drive.google.com/thumbnail?id=1oh-zGFeLdfPAVIVJLhJBrOXpYUXF_zvK&sz=w1600","alt":"Image"},{"id":"id17812097882208887","src":"https://drive.google.com/thumbnail?id=19X-yoXmVACjYHpPeILP3j7VSdbdFMAwH&sz=w1600","alt":"Image"},{"id":"id17812097882206252","src":"https://drive.google.com/thumbnail?id=1BtAzsItjErHW3y1l_Lvje_r6khSX0x-m&sz=w1600","alt":"Image"},{"id":"id17812097882208406","src":"https://drive.google.com/thumbnail?id=1JORmvlNG79q8NLwdpawW2r5mX2O0dHrQ&sz=w1600","alt":"Image"},{"id":"id17812102804494135","src":"https://drive.google.com/thumbnail?id=1swRsCGMsKZmdhNi3V0HwByhKfFD--tZc&sz=w1600","alt":"Image"},{"id":"id17812102804498766","src":"https://drive.google.com/thumbnail?id=1GFwrEohqj3pzQVmq0hjf0DnCDI6MikEj&sz=w1600","alt":"Image"},{"id":"id17812102804493486","src":"https://drive.google.com/thumbnail?id=1nKqw2jqllC0Hx3Bv5G9zlOzbzk1VbadI&sz=w1600","alt":"Image"},{"id":"id1781210280449868","src":"https://drive.google.com/thumbnail?id=1fmYWQIB4OyErBF940gMP3cX-opN-pwzL&sz=w1600","alt":"Image"},{"id":"id17812102804496494","src":"https://drive.google.com/thumbnail?id=1dqrdPPtx6JkTCLHIBETQd55yDiCU2ZpN&sz=w1600","alt":"Image"},{"id":"id17812102804497656","src":"https://drive.google.com/thumbnail?id=1dsNaRqExjTOOBuWuJf_BRk1RRUhn3yFg&sz=w1600","alt":"Image"},{"id":"id17812102804499410","src":"https://drive.google.com/thumbnail?id=1oh-zGFeLdfPAVIVJLhJBrOXpYUXF_zvK&sz=w1600","alt":"Image"},{"id":"id17812102804492145","src":"https://drive.google.com/thumbnail?id=19X-yoXmVACjYHpPeILP3j7VSdbdFMAwH&sz=w1600","alt":"Image"},{"id":"id17812102804495876","src":"https://drive.google.com/thumbnail?id=1BtAzsItjErHW3y1l_Lvje_r6khSX0x-m&sz=w1600","alt":"Image"},{"id":"id17812102804494640","src":"https://drive.google.com/thumbnail?id=1JORmvlNG79q8NLwdpawW2r5mX2O0dHrQ&sz=w1600","alt":"Image"},{"id":"id17812123924066707","src":"https://drive.google.com/thumbnail?id=1O97q2dbv4pa-mfiVVGSgVyg782ZyBVX3&sz=w1600","alt":"Image"},{"id":"id17812123924063897","src":"https://drive.google.com/thumbnail?id=1TivDmm4G8qCfR-UImtkFWc5qeyBW_MEx&sz=w1600","alt":"Image"},{"id":"id17812123924062582","src":"https://drive.google.com/thumbnail?id=19Ng5KatpDDUu6GlyIIN1YK8YX4Z7Kufi&sz=w1600","alt":"Image"},{"id":"id17812123924061287","src":"https://drive.google.com/thumbnail?id=1PRSKvE7byzFA8YcHO1Y7KcaGe6eshtTc&sz=w1600","alt":"Image"},{"id":"id17812123924063710","src":"https://drive.google.com/thumbnail?id=1HAHPzzXN6AkZGyU2JhVWh1e4qkETgd5y&sz=w1600","alt":"Image"},{"id":"id17812123924061266","src":"https://drive.google.com/thumbnail?id=1MLD7nDoyu447Pu8yByLy0VoIESh_fv30&sz=w1600","alt":"Image"},{"id":"id17812123924063376","src":"https://drive.google.com/thumbnail?id=12B8Gyx1Gaftvsz6Fq1KBsq2MxdPxFi7k&sz=w1600","alt":"Image"}],"id17812092545597700":[{"id":"id17812099871895451","src":"https://drive.google.com/thumbnail?id=1LbaRVRr1EMb8B4-fchGwfG-j13fRnGkv&sz=w1600","alt":"Image"},{"id":"id1781209987189159","src":"https://drive.google.com/thumbnail?id=1IM9G55c6E2WzTcE43GTIsU7daY-T7Sg8&sz=w1600","alt":"Image"},{"id":"id1781209987189392","src":"https://drive.google.com/thumbnail?id=13F-uG05nUSuqMQtgwNPAFLFjyaVJmsRG&sz=w1600","alt":"Image"},{"id":"id17812099871894630","src":"https://drive.google.com/thumbnail?id=1VWMXEnN81P8_xpY6YLvLYV9bBbG8baZA&sz=w1600","alt":"Image"},{"id":"id17812099871896895","src":"https://drive.google.com/thumbnail?id=1ZGobFY-A3MC9rUM4YaFfVHW7Z1CK8wjc&sz=w1600","alt":"Image"},{"id":"id17812099871897464","src":"https://drive.google.com/thumbnail?id=1V3b3vtod4CAo1EwTllzHsbr6Va8eydHS&sz=w1600","alt":"Image"},{"id":"id17812099871893638","src":"https://drive.google.com/thumbnail?id=1bMLcGPQ1gMxtJwRJez2VPcCfM-FcrAna&sz=w1600","alt":"Image"},{"id":"id17812099871896302","src":"https://drive.google.com/thumbnail?id=11lzfQXwcKT4l-1kJ752DDK_H_8QovT9t&sz=w1600","alt":"Image"},{"id":"id17812099871896791","src":"https://drive.google.com/thumbnail?id=16WAPxBC1-c3SnDPopXc7ZuKL4t_ysuxV&sz=w1600","alt":"Image"},{"id":"id17812099871899047","src":"https://drive.google.com/thumbnail?id=1HMwrTCEXGpYG8P4VrePxD7Yhh3SRqVM1&sz=w1600","alt":"Image"},{"id":"id17812099871895537","src":"https://drive.google.com/thumbnail?id=1QN5GJ1PcGeQr9Ex-ABGdHCe-6zZWtAd0&sz=w1600","alt":"Image"},{"id":"id17812099871893788","src":"https://drive.google.com/thumbnail?id=1SCfl7GybXCXtslvcAdZXxFr7rc0Guy3J&sz=w1600","alt":"Image"},{"id":"id17812099871899270","src":"https://drive.google.com/thumbnail?id=1o-0Zgk_tVUxlKg3vM2HUCA0YdbWX88jm&sz=w1600","alt":"Image"},{"id":"id17812099871895099","src":"https://drive.google.com/thumbnail?id=1YKXA2KEYw7Fi2a3sdUyGfGaJy9lYLayQ&sz=w1600","alt":"Image"},{"id":"id17812099871899324","src":"https://drive.google.com/thumbnail?id=1F4NxL0Ww0CyVqtbd1YeNkckMoOgRcYo5&sz=w1600","alt":"Image"},{"id":"id17812099871892053","src":"https://drive.google.com/thumbnail?id=1JshCMfioMtCFySUDQFQw98t6tFX9xV-k&sz=w1600","alt":"Image"},{"id":"id17812099871898988","src":"https://drive.google.com/thumbnail?id=1SeJ8hHL2ylrg2oFOD-WcVA9wmgKYYsvq&sz=w1600","alt":"Image"},{"id":"id1781209987189434","src":"https://drive.google.com/thumbnail?id=1cRlDTrk2tRShMimE75cvwa5SFDMHPuup&sz=w1600","alt":"Image"},{"id":"id17812099871897704","src":"https://drive.google.com/thumbnail?id=18yFR2sPVeacq6VzHbLHUdtOczIbSHOHj&sz=w1600","alt":"Image"},{"id":"id17812099871896573","src":"https://drive.google.com/thumbnail?id=1aaPWe8HtxKdaS3ydI2HFaIMO7Xk78I8E&sz=w1600","alt":"Image"},{"id":"id17812099871894902","src":"https://drive.google.com/thumbnail?id=1JQsHbNMGzDLu4H2N-4HRyIEV11Nmo4QX&sz=w1600","alt":"Image"},{"id":"id17812099871892355","src":"https://drive.google.com/thumbnail?id=1Wldx0UcMZFGmjOSBj37ZrhaAjDw5-_Sv&sz=w1600","alt":"Image"},{"id":"id17812099871898239","src":"https://drive.google.com/thumbnail?id=1fCFKDrldlfgqyAquFCEZ6b4XOFKEmt2I&sz=w1600","alt":"Image"},{"id":"id17812099871891441","src":"https://drive.google.com/thumbnail?id=1qjdZck8uu6kccN9qqHNhXlSMXdYgoGlY&sz=w1600","alt":"Image"},{"id":"id17812099871896999","src":"https://drive.google.com/thumbnail?id=1rZB3Hh7Q3j6qlzRNSDTCBbopNxirvhJW&sz=w1600","alt":"Image"},{"id":"id17812099871892486","src":"https://drive.google.com/thumbnail?id=1EwUF7KpYw_ry9kGYGgUwCq3YTo5suJhC&sz=w1600","alt":"Image"},{"id":"id17812099871892846","src":"https://drive.google.com/thumbnail?id=1ItGen30Ctf0SyxlLiBx0TGcPTjz7zB8k&sz=w1600","alt":"Image"},{"id":"id17812099871893028","src":"https://drive.google.com/thumbnail?id=1UxfPhOqk8h6WcXd-QbnILexBBOlNTr2h&sz=w1600","alt":"Image"},{"id":"id17812099871891918","src":"https://drive.google.com/thumbnail?id=1R5XynqSxLnDTqNdOLTTftlw7wUAaPHql&sz=w1600","alt":"Image"},{"id":"id17812099871893753","src":"https://drive.google.com/thumbnail?id=1XUGb_i65z1vVbKncLFJ32WxBPMveAoRL&sz=w1600","alt":"Image"},{"id":"id17812099871896753","src":"https://drive.google.com/thumbnail?id=1iBU5RGKXKidTP2fNr5bRZhyqFWGzreHl&sz=w1600","alt":"Image"},{"id":"id17812099871894795","src":"https://drive.google.com/thumbnail?id=1r5rl_K2mucRPNT2iXgFIflP7wxKyymrZ&sz=w1600","alt":"Image"},{"id":"id17812099871895708","src":"https://drive.google.com/thumbnail?id=1BLj-De8pVu5MsgI3FCTOhsBvWxIYXNxk&sz=w1600","alt":"Image"},{"id":"id17812099871895711","src":"https://drive.google.com/thumbnail?id=1hoFRu0QKDIJGTSJrA7-6sseghikDXhwO&sz=w1600","alt":"Image"},{"id":"id17812099871898731","src":"https://drive.google.com/thumbnail?id=19T-T88e9pYkQ8YhM359EXLLi80I8VCHn&sz=w1600","alt":"Image"},{"id":"id17812099871898150","src":"https://drive.google.com/thumbnail?id=19_KEM7HGTCUcdphOABPm9jgt7keTY0B7&sz=w1600","alt":"Image"},{"id":"id17812099871899630","src":"https://drive.google.com/thumbnail?id=1ASLS0RtDPDCP3tgT7tUKgKDWr_9Gsgfk&sz=w1600","alt":"Image"},{"id":"id178120998718961","src":"https://drive.google.com/thumbnail?id=1_7kUPvQWKZFdC8L6gQ44RtSGXVQMAtC3&sz=w1600","alt":"Image"},{"id":"id17812099871892050","src":"https://drive.google.com/thumbnail?id=1BEC6zYbaNeJzow6oACp7-cZLt_pm7O7c&sz=w1600","alt":"Image"},{"id":"id1781209987189288","src":"https://drive.google.com/thumbnail?id=1yewQBVw06jVAzeYRAVRhETRBAuGad-cm&sz=w1600","alt":"Image"},{"id":"id17812099871893589","src":"https://drive.google.com/thumbnail?id=1qlkU_Nu05TAQgEMaD579_RvZ-JGyxuxv&sz=w1600","alt":"Image"},{"id":"id17812099871896291","src":"https://drive.google.com/thumbnail?id=1fa6UoTwsGGg-C9WY2fA4A5Dp99dJ27XG&sz=w1600","alt":"Image"},{"id":"id17812099871891207","src":"https://drive.google.com/thumbnail?id=13eniKe1S-ltSH6WY9H7rS4nhoPVy-4_a&sz=w1600","alt":"Image"},{"id":"id17812099871898969","src":"https://drive.google.com/thumbnail?id=1OQo5GqvStHd3HIXHIxXXGNw4RWo82ooT&sz=w1600","alt":"Image"},{"id":"id17812124222144485","src":"https://drive.google.com/thumbnail?id=1ia0o78IFBlwYJ90g_ZSltRg888P_Mh4L&sz=w1600","alt":"Image"},{"id":"id17812124222145530","src":"https://drive.google.com/thumbnail?id=1Va84nYiUeankUCKydhe2YnyRJKXU2G6f&sz=w1600","alt":"Image"},{"id":"id17812124222147889","src":"https://drive.google.com/thumbnail?id=1wD3mQGTCUIi_Hed6toeXWWvYA9j7XQ4F&sz=w1600","alt":"Image"},{"id":"id17812124222141536","src":"https://drive.google.com/thumbnail?id=1i-R-Luj6M6UF0rBzht-0KmMQFIG0dkfu&sz=w1600","alt":"Image"},{"id":"id17812124222141266","src":"https://drive.google.com/thumbnail?id=14KsYDtZrvmLJzvADVHP9vxlqfRv_U5HL&sz=w1600","alt":"Image"}],"id17812093057557133":[{"id":"id17812103454531120","src":"https://drive.google.com/thumbnail?id=1RvlW5bT7j2k0nPRR3JQxepNOMuzVcx-m&sz=w1600","alt":"Image"},{"id":"id17812103454536723","src":"https://drive.google.com/thumbnail?id=1c2nEotAJag0ddwIa28_pO2U_6xWzb0eF&sz=w1600","alt":"Image"},{"id":"id17812103454533726","src":"https://drive.google.com/thumbnail?id=1dRpGXqSLEAmYQzHlD0Gc6Wg-VUZbYwK4&sz=w1600","alt":"Image"},{"id":"id17812103454538259","src":"https://drive.google.com/thumbnail?id=1EMkINRBfN4PmvivrtGOpEeCwE4mcjBNq&sz=w1600","alt":"Image"},{"id":"id17812103454537023","src":"https://drive.google.com/thumbnail?id=1xR8_I6RmHqCUzuoQFYaebLRaDv6ffBZx&sz=w1600","alt":"Image"},{"id":"id17812103454536122","src":"https://drive.google.com/thumbnail?id=1fCHyBYb33DEGBJrL0kGXzqqprTSEwMkQ&sz=w1600","alt":"Image"},{"id":"id17812103454534027","src":"https://drive.google.com/thumbnail?id=1Wqv5QYyOVdA25rR_LuKp2UkITDIAAxP8&sz=w1600","alt":"Image"},{"id":"id17812103454538558","src":"https://drive.google.com/thumbnail?id=1_lRchVzsZts92WRaEILWVZOw13KKNg43&sz=w1600","alt":"Image"},{"id":"id17812103454536048","src":"https://drive.google.com/thumbnail?id=1xGFmmHNscBW0twv30Nexg2S3GlOmxRs_&sz=w1600","alt":"Image"},{"id":"id17812103454531702","src":"https://drive.google.com/thumbnail?id=1KSxv7SvGIjahAJnnDBcQ4fwznazPrZgk&sz=w1600","alt":"Image"},{"id":"id17812103454537741","src":"https://drive.google.com/thumbnail?id=1gZrjm5e7eFURk6pL-daavl6SyCeG3k2i&sz=w1600","alt":"Image"},{"id":"id17812103454536163","src":"https://drive.google.com/thumbnail?id=1oCHZcrh2nvi_dPR8_X50Avv65jq7Qvld&sz=w1600","alt":"Image"},{"id":"id17812103454531103","src":"https://drive.google.com/thumbnail?id=1zgciRF9rciuq0BoU-aQhFjqrBEhUZGtl&sz=w1600","alt":"Image"},{"id":"id17812103454537110","src":"https://drive.google.com/thumbnail?id=1716x4k8OJaPwQVOvLQsxeuHc_K3oDOod&sz=w1600","alt":"Image"},{"id":"id17812103454537017","src":"https://drive.google.com/thumbnail?id=19IS2EReRCs2PSSfNmeKn90yDQoeKDQaK&sz=w1600","alt":"Image"},{"id":"id17812103454532986","src":"https://drive.google.com/thumbnail?id=1MoGABnjOLKci9F7Ke82N7OVIBYJKRHWi&sz=w1600","alt":"Image"},{"id":"id17812103454535950","src":"https://drive.google.com/thumbnail?id=1KxXF6sP3daZwbXym5khGkojs1TKYZcYv&sz=w1600","alt":"Image"},{"id":"id17812103454534965","src":"https://drive.google.com/thumbnail?id=13qciyOQhx1-eDPPAB4bYoXSKiXT6sAS6&sz=w1600","alt":"Image"},{"id":"id17812103454535639","src":"https://drive.google.com/thumbnail?id=1wnHzVB8_8Jekfo0LdfP0bDLk4N9PlXWy&sz=w1600","alt":"Image"},{"id":"id1781210345453694","src":"https://drive.google.com/thumbnail?id=1OVZdb_sjzJQqBkqQ1PJu-Nsv8wkS-TCk&sz=w1600","alt":"Image"},{"id":"id17812103454538601","src":"https://drive.google.com/thumbnail?id=1PtjB2gcpgOEGavb7jpxSAaFWtQTpk3vo&sz=w1600","alt":"Image"},{"id":"id17812103454532488","src":"https://drive.google.com/thumbnail?id=1-vyXgVVJ_ioUiTb5KiN8GQMDflpaynZy&sz=w1600","alt":"Image"},{"id":"id17812103454537042","src":"https://drive.google.com/thumbnail?id=15pmKazk-oZcvT6giCP88z3aQtF8_xu7A&sz=w1600","alt":"Image"},{"id":"id1781210345453638","src":"https://drive.google.com/thumbnail?id=1LtuOzjzXTrS3Y0I-ZJNCcsAiOe1vjj37&sz=w1600","alt":"Image"},{"id":"id17812103454532345","src":"https://drive.google.com/thumbnail?id=1NHTbI0Ed9d4pgY5GAjOCHqRVOuhwC_Ct&sz=w1600","alt":"Image"},{"id":"id17812103454532916","src":"https://drive.google.com/thumbnail?id=1NWi18zMOOKYAEdtVQQCfZkfTvkcQ0yME&sz=w1600","alt":"Image"},{"id":"id17812103454537365","src":"https://drive.google.com/thumbnail?id=1OWmhW45QrMWVL8BsqOmTjWbgivRZTwz8&sz=w1600","alt":"Image"},{"id":"id17812103454532108","src":"https://drive.google.com/thumbnail?id=1uEiCORuWdOJs_hR82eHDHIBXeFnx3itE&sz=w1600","alt":"Image"},{"id":"id1781210345453423","src":"https://drive.google.com/thumbnail?id=13kd_ygEZCUcQGBDhWSwSNwlsHT7r_FP9&sz=w1600","alt":"Image"},{"id":"id17812103454537431","src":"https://drive.google.com/thumbnail?id=1WWNDp_zqCrDBS17W4fX3qlkkHrMLx7OS&sz=w1600","alt":"Image"},{"id":"id17812103454537810","src":"https://drive.google.com/thumbnail?id=1Yim5Sb0jDe4z0SVsgqg9XFvOgYEd7Nmw&sz=w1600","alt":"Image"},{"id":"id17812103454535995","src":"https://drive.google.com/thumbnail?id=1uEAxu_O19d3w8dQDSB0FQZa5U-wwM5pH&sz=w1600","alt":"Image"},{"id":"id17812103454538310","src":"https://drive.google.com/thumbnail?id=1C-6YBFIZIjm3PfNzPfoG88Awwst0tnGE&sz=w1600","alt":"Image"},{"id":"id1781210345453766","src":"https://drive.google.com/thumbnail?id=1DKvcZfpGYY4KzoDVe9RnH_v6pgwPxopL&sz=w1600","alt":"Image"},{"id":"id17812103454533126","src":"https://drive.google.com/thumbnail?id=1MWu0PJ-i4gs14yIWvd_1J91K1OKDCfmc&sz=w1600","alt":"Image"},{"id":"id17812103454531684","src":"https://drive.google.com/thumbnail?id=1AEx4jGe944Cvw6o1wHdTuI2QWriCit33&sz=w1600","alt":"Image"},{"id":"id17812103454535397","src":"https://drive.google.com/thumbnail?id=1jkOPF9xYw4m3GbeiffCvhstbyh2dTo-E&sz=w1600","alt":"Image"},{"id":"id17812103454532837","src":"https://drive.google.com/thumbnail?id=16tCG_h67lbJvy-UXWnaumGpLv-MklRTa&sz=w1600","alt":"Image"},{"id":"id17812103454538328","src":"https://drive.google.com/thumbnail?id=1_eRx5WKVl6gKTtAQmhpCdVI469uqt0hK&sz=w1600","alt":"Image"},{"id":"id17812103454539732","src":"https://drive.google.com/thumbnail?id=1dyHVeHp3QclXVAi8kePQc9HzdcJHpdE8&sz=w1600","alt":"Image"},{"id":"id17812103454533715","src":"https://drive.google.com/thumbnail?id=1gb1FeS5JWulvBaqNkJfp7HERNVBdRTA5&sz=w1600","alt":"Image"},{"id":"id17812103454531373","src":"https://drive.google.com/thumbnail?id=1C4gLa4b8iXagnKz0o1e80ENjKbg7LqsN&sz=w1600","alt":"Image"},{"id":"id17812103454538575","src":"https://drive.google.com/thumbnail?id=1GT7oqHqNXeyCK-YGzYn2CtZHX0gtwZF0&sz=w1600","alt":"Image"},{"id":"id17812103454537195","src":"https://drive.google.com/thumbnail?id=1OdG4gBPGlh8P5qRuCeqpbHKIeVA3v1He&sz=w1600","alt":"Image"},{"id":"id1781210345453357","src":"https://drive.google.com/thumbnail?id=1gbeF9E2s7T8QEOw_Mu1aqQH9X7bEQfRb&sz=w1600","alt":"Image"},{"id":"id17812103454535840","src":"https://drive.google.com/thumbnail?id=1ktNRWgNwJQgQBkK3STr3O_Ef8eq1_nan&sz=w1600","alt":"Image"},{"id":"id17812103454535517","src":"https://drive.google.com/thumbnail?id=1mTTTQ4ZhtzcC0K5Majghp1yGi0W0XNqX&sz=w1600","alt":"Image"},{"id":"id17812103454538267","src":"https://drive.google.com/thumbnail?id=1UtJ923NkLzwy-uHnoUA-5qxtN8h5oDRN&sz=w1600","alt":"Image"},{"id":"id17812103454539601","src":"https://drive.google.com/thumbnail?id=1o1UctOwSPPg0-XvF96IbP0wV8_GwhpwM&sz=w1600","alt":"Image"},{"id":"id17812103454537740","src":"https://drive.google.com/thumbnail?id=1zTLG6f3FkSxVio3I453j-eUNH3QtWVS_&sz=w1600","alt":"Image"},{"id":"id17812103454535721","src":"https://drive.google.com/thumbnail?id=1GOWfsZlCADQv_nAwY6X2gks4cDPTWcqH&sz=w1600","alt":"Image"},{"id":"id17812103454535833","src":"https://drive.google.com/thumbnail?id=1UHkDugsVht9dSvVubLc6EAjZ9UOMZiVJ&sz=w1600","alt":"Image"},{"id":"id17812103454531777","src":"https://drive.google.com/thumbnail?id=1n899mszr7HD-wzBCo1Z-bGo6pQe8fTar&sz=w1600","alt":"Image"},{"id":"id17812103454539662","src":"https://drive.google.com/thumbnail?id=1o__Jyz-_whp6TAIBBMxDG6nZQXDP8AjO&sz=w1600","alt":"Image"},{"id":"id17812103454537685","src":"https://drive.google.com/thumbnail?id=1_MJKyRaPWdtC0i08JBnv27hAizJq4eLL&sz=w1600","alt":"Image"},{"id":"id17812103454538044","src":"https://drive.google.com/thumbnail?id=1E2BbTdbRZpIcJprCccOYkFkxUIQQFgvy&sz=w1600","alt":"Image"},{"id":"id17812103454539330","src":"https://drive.google.com/thumbnail?id=162t3i65RrTx-IJaIxLWPM5r1hIe_-wro&sz=w1600","alt":"Image"},{"id":"id17812103454532721","src":"https://drive.google.com/thumbnail?id=1NoU3wKgpTSlb6t0H_Yg60croJFFj3hvy&sz=w1600","alt":"Image"},{"id":"id17812103454537139","src":"https://drive.google.com/thumbnail?id=1b1DI3gcDtNjqnELCXkrldzSZdpUBsnDx&sz=w1600","alt":"Image"},{"id":"id17812103454539991","src":"https://drive.google.com/thumbnail?id=1jFgpo5XBiB6GFmKHAWBQ-kqTy4u_PKlE&sz=w1600","alt":"Image"},{"id":"id17812103454537881","src":"https://drive.google.com/thumbnail?id=1jfy4_cjHolZN-BgXEU4kiK15Pdvl1Lqx&sz=w1600","alt":"Image"},{"id":"id17812103454531984","src":"https://drive.google.com/thumbnail?id=1Elh_-wu8ez0YilSbGTuzPLJ7SMXIWg5v&sz=w1600","alt":"Image"},{"id":"id17812103454534894","src":"https://drive.google.com/thumbnail?id=1JSRcv7FlkZeMdkUHUnJQdN9BDYvDJQbL&sz=w1600","alt":"Image"},{"id":"id17812103454533810","src":"https://drive.google.com/thumbnail?id=1RFHfH7vZSe7ySLB9IrjZjT2ub4qDikx_&sz=w1600","alt":"Image"},{"id":"id17812103454538631","src":"https://drive.google.com/thumbnail?id=11NtmqObES1eg_ugjh4Yb4AgfaC2JmllI&sz=w1600","alt":"Image"},{"id":"id17812103454531071","src":"https://drive.google.com/thumbnail?id=19I3tsQZ0sJqe4gZybDqlPdHjBQSvDEIJ&sz=w1600","alt":"Image"},{"id":"id17812103454535349","src":"https://drive.google.com/thumbnail?id=1ly2Slha8f56XHguiNxtfNHzC2HnbLtK_&sz=w1600","alt":"Image"},{"id":"id17812103454536567","src":"https://drive.google.com/thumbnail?id=1qMzMXuAlWAXgfH8MQkR52VQqynKXisdK&sz=w1600","alt":"Image"},{"id":"id17812103454534135","src":"https://drive.google.com/thumbnail?id=1fqcwrcnt_uyPlGAyEPDMwxk4FvxSjiPc&sz=w1600","alt":"Image"}],"id17812113697876794":[{"id":"id17812113851787081","src":"https://drive.google.com/thumbnail?id=1OoLt8_cousNVbYE5h25su7FG_AlX9jmf&sz=w1600","alt":"Image"},{"id":"id17812113851782345","src":"https://drive.google.com/thumbnail?id=1kIW8a9WP06IwiJ-96vYx89tGrzwH-7IH&sz=w1600","alt":"Image"},{"id":"id17812113851782957","src":"https://drive.google.com/thumbnail?id=10Ew5RivaPp9jOWzbLf1PH-M3ThpWpYyQ&sz=w1600","alt":"Image"},{"id":"id17812113851784514","src":"https://drive.google.com/thumbnail?id=1SfgCXnpcuLFOvAOcxinPTsXREJMvcaHQ&sz=w1600","alt":"Image"},{"id":"id17812113851787083","src":"https://drive.google.com/thumbnail?id=1j0ByX0FzQIxQka_kibaYghu3J1GK8Knf&sz=w1600","alt":"Image"},{"id":"id17812113851783876","src":"https://drive.google.com/thumbnail?id=1uaSB_XggiYGe5JtgHTJO6E5quEBik28u&sz=w1600","alt":"Image"},{"id":"id1781211385178688","src":"https://drive.google.com/thumbnail?id=1mqYyjBJK0XInlyOSB7vIBydE_ROfJpAA&sz=w1600","alt":"Image"},{"id":"id17812113851786775","src":"https://drive.google.com/thumbnail?id=1E-C_jxoEaJrPzzRcwYQLKuTPaYeT8D5s&sz=w1600","alt":"Image"},{"id":"id17812113851782990","src":"https://drive.google.com/thumbnail?id=1I2eNNshtDLxw3uSRo4Uw9zespdEsYgWv&sz=w1600","alt":"Image"},{"id":"id17812113851785678","src":"https://drive.google.com/thumbnail?id=149jVjPzbHxSTVKdRazDLDqfceBhC35ZS&sz=w1600","alt":"Image"},{"id":"id1781211385178299","src":"https://drive.google.com/thumbnail?id=1L2s8rQM5Y2U_ON-utlhNDRHmG6RlvjGv&sz=w1600","alt":"Image"},{"id":"id17812113851782598","src":"https://drive.google.com/thumbnail?id=1BIW1y8A0eiZXj89IKGxO_0OUEoEf57N8&sz=w1600","alt":"Image"},{"id":"id17812113851784671","src":"https://drive.google.com/thumbnail?id=1SsVByPP4mHAdy9xh82jCRv26Z0J-i_V5&sz=w1600","alt":"Image"},{"id":"id17812113851783216","src":"https://drive.google.com/thumbnail?id=1Z8V1ANCPolsOYV1bGSuLMSIBu7yfMcAJ&sz=w1600","alt":"Image"},{"id":"id17812113851782879","src":"https://drive.google.com/thumbnail?id=1lhpAUaaiFaXdt0ral1yZV9vWVWX19tzx&sz=w1600","alt":"Image"},{"id":"id17812113851786256","src":"https://drive.google.com/thumbnail?id=1CY-oYT2CvtIoi7hjdKhSw0MgQNWDEwve&sz=w1600","alt":"Image"},{"id":"id17812113851784589","src":"https://drive.google.com/thumbnail?id=1VF-0nXPBUwG-PdrY-hV-C0zjLXSPyjig&sz=w1600","alt":"Image"},{"id":"id178121138517890","src":"https://drive.google.com/thumbnail?id=1xZQnIyLiIDzlD12htzNo8MfWramYDAMB&sz=w1600","alt":"Image"},{"id":"id17812113851782933","src":"https://drive.google.com/thumbnail?id=1AcK7hBX0R2D_fKZdZpmzDrWy1lGWWWuE&sz=w1600","alt":"Image"},{"id":"id17812113851789901","src":"https://drive.google.com/thumbnail?id=1EGrjJkAtt2jeYZx8R1G9wdXS8B7yoOyk&sz=w1600","alt":"Image"},{"id":"id17812113851787384","src":"https://drive.google.com/thumbnail?id=1ophS97fq38RPalh1Yz9AoqNVWA5TPFJY&sz=w1600","alt":"Image"},{"id":"id17812113851789699","src":"https://drive.google.com/thumbnail?id=1zGQTPCO7_kF2G4t6LhNt8yEUwTgSMkQp&sz=w1600","alt":"Image"},{"id":"id17812113851781391","src":"https://drive.google.com/thumbnail?id=1fzikhLphlhRryjFsmRQiiro9x8_Isv4V&sz=w1600","alt":"Image"},{"id":"id17812113851787609","src":"https://drive.google.com/thumbnail?id=1tQkylHXzNW5VSJvRWR4-sCOhaeZyhyuO&sz=w1600","alt":"Image"},{"id":"id17812113851788438","src":"https://drive.google.com/thumbnail?id=1xIblWqWerc2XjSfqoVobEFTSV0Rzssdh&sz=w1600","alt":"Image"},{"id":"id1781211385178123","src":"https://drive.google.com/thumbnail?id=1afp2F29jEbkdYYyyIxqZWEO0rhAyrkYx&sz=w1600","alt":"Image"},{"id":"id17812113851782459","src":"https://drive.google.com/thumbnail?id=19s_BCVnTpB9PUqR3lbK3SKIX5gDYax_j&sz=w1600","alt":"Image"},{"id":"id17812113851784359","src":"https://drive.google.com/thumbnail?id=1U2DIcaMqGyQIVuQl2suYVrzYqWEf9mqw&sz=w1600","alt":"Image"},{"id":"id17812113851785560","src":"https://drive.google.com/thumbnail?id=1VQysZ1MfFhC2uC-MMQ3veExeQzOywo8m&sz=w1600","alt":"Image"},{"id":"id17812113851789979","src":"https://drive.google.com/thumbnail?id=1Z1JzYrklt12ZfuUyub9yU9AAgKO3h-np&sz=w1600","alt":"Image"},{"id":"id17812113851784466","src":"https://drive.google.com/thumbnail?id=1gWooj3OqI2PW9G8rfggp-zcHNNO_6_3P&sz=w1600","alt":"Image"},{"id":"id17812113851787923","src":"https://drive.google.com/thumbnail?id=1DVNM6zMV6PAoxiCsLyYipH-dGTSV-mmS&sz=w1600","alt":"Image"},{"id":"id17812113851784143","src":"https://drive.google.com/thumbnail?id=1QHXtzqQl9Y3AU-Z6IPbh1XfxSilCC9-9&sz=w1600","alt":"Image"}],"id17812118989683869":[{"id":"id17812120328331821","src":"https://drive.google.com/thumbnail?id=1OKGlYWXTn7spH-iR0XDl0FkmfBF_i6z_&sz=w1600","alt":"Image"},{"id":"id17812120328337992","src":"https://drive.google.com/thumbnail?id=1OT8jBeQe9vzcc8amuAG76DwDNyt1XtVk&sz=w1600","alt":"Image"},{"id":"id17812120328332144","src":"https://drive.google.com/thumbnail?id=1DVBBNGJTyfDUNaR3dy-AbfTZ1q-7bqvp&sz=w1600","alt":"Image"},{"id":"id1781212030887920","src":"https://drive.google.com/thumbnail?id=1FGlb8Z4f0si_s4qVa7xaYoajFipCnO8K&sz=w1600","alt":"Image"},{"id":"id17812120308871758","src":"https://drive.google.com/thumbnail?id=1fTLGxryX6p87uMfdP7-AgZpFrnrvMpdP&sz=w1600","alt":"Image"},{"id":"id17812120308879598","src":"https://drive.google.com/thumbnail?id=1Fz5E-2pIPWdFIhOIemzcPdJvb0uyeDvT&sz=w1600","alt":"Image"},{"id":"id17812120308875661","src":"https://drive.google.com/thumbnail?id=1YMOccUj1rXo0j-yS-IVKbg8-CVB6oJAA&sz=w1600","alt":"Image"},{"id":"id17812120308872299","src":"https://drive.google.com/thumbnail?id=1aI5N2A_l56NwzHDI0Qt0sK1nznuaCk1U&sz=w1600","alt":"Image"},{"id":"id17812120308878069","src":"https://drive.google.com/thumbnail?id=1047S9zCITctZ4ihMlLsme1jWZPwutBQY&sz=w1600","alt":"Image"},{"id":"id17812120308872490","src":"https://drive.google.com/thumbnail?id=1PRApVUaIHup9orl-1O8vwXaXKIwVp_yw&sz=w1600","alt":"Image"},{"id":"id17812120308876351","src":"https://drive.google.com/thumbnail?id=16NYhATt1iLInyQ4UjvyAjAdn8o_bCWPM&sz=w1600","alt":"Image"},{"id":"id17812120328325608","src":"https://drive.google.com/thumbnail?id=1j-_7fIt46szlLy82NfNQnATC0-CP-pq5&sz=w1600","alt":"Image"},{"id":"id17812120328337728","src":"https://drive.google.com/thumbnail?id=1b5uV_xw2236w6XVwT6rK0PfGtIsswnB2&sz=w1600","alt":"Image"},{"id":"id17812120328334446","src":"https://drive.google.com/thumbnail?id=1cRwYuNOj06UtVBWwdE1p1qsEwoxFSjbh&sz=w1600","alt":"Image"},{"id":"id17812120328338372","src":"https://drive.google.com/thumbnail?id=16SjNOFn9NnKXoVXbfm3ILY9wceK2K-ry&sz=w1600","alt":"Image"},{"id":"id17812120328331527","src":"https://drive.google.com/thumbnail?id=1peW-4wok5hfCF2dBvArDyxKXFOUb98xV&sz=w1600","alt":"Image"},{"id":"id1781212032833245","src":"https://drive.google.com/thumbnail?id=1FxsXp6_TV7TGU80HKDjX99FHptayIM84&sz=w1600","alt":"Image"},{"id":"id17812120328332603","src":"https://drive.google.com/thumbnail?id=1H1GItvsYXLVR7tdpOGu0Vvg1y-Dk2QwS&sz=w1600","alt":"Image"},{"id":"id17812120328336986","src":"https://drive.google.com/thumbnail?id=1Hn3Nhet-uCm_RO7PMnYadJoPWYmBYwXE&sz=w1600","alt":"Image"},{"id":"id17812120328336026","src":"https://drive.google.com/thumbnail?id=1CIgS-mwki_6xwVeNzxoiIyBFr2BCnuoW&sz=w1600","alt":"Image"},{"id":"id17812120328337761","src":"https://drive.google.com/thumbnail?id=1fsKC0Umhce-V8ucdub0lmanrvTUqyn_s&sz=w1600","alt":"Image"},{"id":"id17812120328338205","src":"https://drive.google.com/thumbnail?id=1KNOwELeQz_8EyNOHQZjqfMNmMyGemwQ0&sz=w1600","alt":"Image"}],"id17812121416775":[{"id":"id17812121552516317","src":"https://drive.google.com/thumbnail?id=1Z7hXV6A7ZprHdvyhqBDmJ_XmZ-T9NEoz&sz=w1600","alt":"Image"},{"id":"id17812121552514359","src":"https://drive.google.com/thumbnail?id=1iQLCP8cxfmczFTkfVx_P205omaDzLLBO&sz=w1600","alt":"Image"},{"id":"id17812121552515824","src":"https://drive.google.com/thumbnail?id=1qsbwQC9YWqFy4kD-2G6uGUZVXUThzg83&sz=w1600","alt":"Image"},{"id":"id17812121552515247","src":"https://drive.google.com/thumbnail?id=1wigtMZ55_nMOskZw2Z1ANGPVf0jhv4z-&sz=w1600","alt":"Image"},{"id":"id1781212155251418","src":"https://drive.google.com/thumbnail?id=1DAAE89TrRbRhVy4oGRxIxO1JS5KEfNJr&sz=w1600","alt":"Image"},{"id":"id17812121552515807","src":"https://drive.google.com/thumbnail?id=1wPJMpPgwFflh2wy5mIBopFCzgA_Y3GCF&sz=w1600","alt":"Image"},{"id":"id17812121552514381","src":"https://drive.google.com/thumbnail?id=1WRTDubfmZlX3q_khiF85tt0rBn_mGzRf&sz=w1600","alt":"Image"},{"id":"id17812121552515023","src":"https://drive.google.com/thumbnail?id=14pNN7Ey3YwN_GdztuHk9Dl9Td_448MK6&sz=w1600","alt":"Image"},{"id":"id17812121552514981","src":"https://drive.google.com/thumbnail?id=16SCLeOsS6Il-SsEl7MvuvsoMXbEsCeaJ&sz=w1600","alt":"Image"},{"id":"id17812121552518575","src":"https://drive.google.com/thumbnail?id=1U28YAbwa1JllzkEGdrndGHtg5fy6k3qV&sz=w1600","alt":"Image"},{"id":"id17812121552512450","src":"https://drive.google.com/thumbnail?id=1FNZWBAj993fs-4x45_QYP0OFIvfeAF4H&sz=w1600","alt":"Image"},{"id":"id17812121552516887","src":"https://drive.google.com/thumbnail?id=1_CR67nXFw7jSM4gfQ_92XI-zJRgePfnN&sz=w1600","alt":"Image"},{"id":"id17812121552513634","src":"https://drive.google.com/thumbnail?id=1XagoA_gu_Gf6RFVE0-j3iMKEMgibEevt&sz=w1600","alt":"Image"},{"id":"id17812121552516736","src":"https://drive.google.com/thumbnail?id=1jJexA4kG5oimMmxEENmTpn4uy_NyxEws&sz=w1600","alt":"Image"}],"al5":[{"id":"id17812129467181705","src":"https://drive.google.com/thumbnail?id=14Ow9X68I5DBD4_7U7CRXAFG4E6qoGcLA&sz=w1600","alt":"Image"},{"id":"id17812127962843173","src":"https://drive.google.com/thumbnail?id=1RnhI0F0iLzusvzdfg309W7a_QNqneQNi&sz=w1600","alt":"Image"},{"id":"id17812129503804899","src":"https://drive.google.com/thumbnail?id=1TjYP8h-tmi_B4DY_6JDebGtB4e5JRi0r&sz=w1600","alt":"Image"},{"id":"id17812127962843931","src":"https://drive.google.com/thumbnail?id=1ueHD7Mii98BKP-XZ2sPH3w0ZWvuOD5XU&sz=w1600","alt":"Image"},{"id":"id17812127962845124","src":"https://drive.google.com/thumbnail?id=1fZIrgNL0TklKhK2uQZD_cVjUmtfCtCoy&sz=w1600","alt":"Image"},{"id":"id17812127962843470","src":"https://drive.google.com/thumbnail?id=1jeSgvOj77N7mDSbXrOhVJiORgZgLG_zP&sz=w1600","alt":"Image"},{"id":"id17812129427673329","src":"https://drive.google.com/thumbnail?id=1RnhI0F0iLzusvzdfg309W7a_QNqneQNi&sz=w1600","alt":"Image"},{"id":"id17812129427677337","src":"https://drive.google.com/thumbnail?id=1ueHD7Mii98BKP-XZ2sPH3w0ZWvuOD5XU&sz=w1600","alt":"Image"},{"id":"id17812129427679951","src":"https://drive.google.com/thumbnail?id=1fZIrgNL0TklKhK2uQZD_cVjUmtfCtCoy&sz=w1600","alt":"Image"},{"id":"id17812129427672827","src":"https://drive.google.com/thumbnail?id=1jeSgvOj77N7mDSbXrOhVJiORgZgLG_zP&sz=w1600","alt":"Image"},{"id":"id17812129448403535","src":"https://drive.google.com/thumbnail?id=1eCoXo6t1DAQ_7gJoOUY8CtbzSPp6Dgkp&sz=w1600","alt":"Image"},{"id":"id17812129448406311","src":"https://drive.google.com/thumbnail?id=1KcW2ondyl6jUGx3A0LLJAxKop-Jzo6Of&sz=w1600","alt":"Image"},{"id":"id17812129448407999","src":"https://drive.google.com/thumbnail?id=1n30ndf5jBhhKVdQniqDq0vP5ybpNaN0i&sz=w1600","alt":"Image"},{"id":"id17812129448406102","src":"https://drive.google.com/thumbnail?id=15S5p2jB1v6kouTFfyPpiT0ZdvB7_204_&sz=w1600","alt":"Image"},{"id":"id17812129448402550","src":"https://drive.google.com/thumbnail?id=1ZRemoMNxLEKmzmvQHudCIDSIPOVTAoXc&sz=w1600","alt":"Image"},{"id":"id17812129448401445","src":"https://drive.google.com/thumbnail?id=1Cf4Pm2YORyCgQACKCf1RCPlSJt7BsmIh&sz=w1600","alt":"Image"},{"id":"id17812129467186403","src":"https://drive.google.com/thumbnail?id=1dw0JKksuML3352tqs2S7UnReNgSPKaLA&sz=w1600","alt":"Image"},{"id":"id17812129467184809","src":"https://drive.google.com/thumbnail?id=1D6CxRcTJS141CUYHpa0q7tuei7tfYAUh&sz=w1600","alt":"Image"},{"id":"id17812129482584519","src":"https://drive.google.com/thumbnail?id=1Q-XnYZ4mafQbjaB94qe17WrrMoZMF2Eb&sz=w1600","alt":"Image"},{"id":"id17812129503801424","src":"https://drive.google.com/thumbnail?id=1hbYBkaBg9yOGghIVBE2vso8LnRWhMRAo&sz=w1600","alt":"Image"},{"id":"id17812129503804857","src":"https://drive.google.com/thumbnail?id=1yMCfleTV1lsl2wCyzw9u8fluEEfr93OF&sz=w1600","alt":"Image"},{"id":"id17812129503801838","src":"https://drive.google.com/thumbnail?id=1zoSrXY8TwoDWyOTw6jbG5wIVIycjC7fT&sz=w1600","alt":"Image"},{"id":"id17812129521827392","src":"https://drive.google.com/thumbnail?id=1a_-9zHtUYnyI4K-mA6OVVmF4Bq4pcDaM&sz=w1600","alt":"Image"}]},"experience":[{"id":"ex1","companyId":"co1","project":"Digital Commerce System","period":"2022 – 2025","role":"Lead Designer","desc":"Owned end-to-end visual system for Central's e-commerce platform, managing campaign output across 5+ sub-brands simultaneously.","responsibilities":["Packaging Design & Brand Presentation","Designed product packaging that reflects brand identity while optimizing shelf appeal and user experience.","Created brand and product presentation ads tailored for digital platforms to increase visibility and engagement.","E-Commerce & Campaign Design Designed PDP (Product Detail Page) and PLP (Product Listing Page) layouts to enhance product visibility and improve the online shopping experience.","Developed PDP banner templates tailored for campaigns, supporting large-scale content production across multiple SKUs.","Integrated automation scripts into PDP workflows to boost design efficiency and output accuracy.","Produced key visuals, homepage banners, landing pages, and Shop-in-Shop (SIS) layouts for Shopee, Lazada, NocNoc, ThisShop, HomePro, and more, in alignment with brand guidelines.","Created promotional assets such as coupons, campaign banners, and digital content across social media (e.g., Facebook, LINE) to support seasonal marketing campaigns.","Supported offline marketing by designing printed materials including backdrops, roll-ups, brochures, and in-store promotional visuals."],"workflow":["Built design system & asset library","Automation workflow via GAS","AI-assisted production pipeline"],"tools":["Figma","Photoshop","Illustrator","After Effects","Google Sheets","Apps Script"],"results":[{"num":"5+","lbl":"Sub-brands managed"},{"num":"300+","lbl":"Assets / month"},{"num":"40%","lbl":"Production time saved"}]},{"id":"ex2","companyId":"co2","project":"Commerce Platform Design","period":"2021 – 2023","role":"Senior Designer","desc":"Directed visual output for Power Buy's e-commerce platform covering homepage management, mega campaigns, and product promotions.","responsibilities":["Homepage management","Mega campaign art direction","Product campaign design","Asset standardisation"],"workflow":["Production workflow optimisation","Asset naming conventions"],"tools":["Figma","Photoshop","Illustrator"],"results":[{"num":"4","lbl":"Mega campaigns"},{"num":"150+","lbl":"Assets / campaign"}]},{"id":"ex3","companyId":"co4","project":"Product Visual System","period":"2023 – Present","role":"Leads Designer / AD","desc":"Building product imagery pipelines and e-commerce assets for Worldtech consumer electronics across Lazada and Shopee.","responsibilities":["Product photography compositing","E-commerce banner design","Multi-SKU asset management","Frame automation tool"],"workflow":["HTML/JS batch automation tools","Google Sheets SKU tracking","AI-assisted background generation"],"tools":["Photoshop","Illustrator","After Effects","HTML/JS","Google Sheets"],"results":[{"num":"200+","lbl":"SKUs managed"},{"num":"3","lbl":"Platforms covered"}]}]};
 if(!DB.profile.avatar)DB.profile.avatar='';
 DB.albums.forEach(a=>{if(!a.tags)a.tags=[];});
 
@@ -1018,8 +1598,16 @@ function albumCardHTML(album,fromPage){
     return `<div class="${cls}"><div class="ph">${icons[i]}</div></div>`;
   });
   const tags=(album.tags||[]).map(t=>`<span class="album-tag">${esc(t)}</span>`).join('');
-  return `<div class="album-card" onclick="openAlbum('${album.id}','${fromPage}')">
+  return `<div class="album-card"
+    onclick="openAlbum('${album.id}','${fromPage}')"
+    ${isAdmin?`draggable="true"
+    ondragstart="albumCardDragStart(event,'${album.id}')"
+    ondragover="albumCardDragOver(event)"
+    ondragleave="albumCardDragLeave(event)"
+    ondragend="albumCardDragEnd(event)"
+    ondrop="albumCardDrop(event,'${album.id}')"`:''}>
     ${isAdmin?`<div class="card-actions">
+      <button class="card-action-btn" style="cursor:grab" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
       <button class="card-action-btn" onclick="event.stopPropagation();openEditAlbumModal('${album.id}')" title="Edit"><i class="ti ti-edit"></i></button>
       <button class="card-action-btn del" onclick="event.stopPropagation();deleteAlbum('${album.id}')" title="Delete"><i class="ti ti-trash"></i></button>
     </div>`:''}
@@ -1111,19 +1699,25 @@ function renderAlbumDetail(albumId){
   }
   grid.className='masonry cols-'+currentCols;
   grid.style.setProperty('--cols', currentCols);
-  grid.innerHTML=imgs.map((img,i)=>`<div class="masonry-item"
-    draggable="${isAdmin?'true':'false'}"
-    data-img-id="${img.id}"
-    onclick="openLightbox(${i})"
-    ondragstart="dragStart(event,'${albumId}')"
-    ondragover="dragOver(event)"
-    ondragleave="dragLeave(event)"
-    ondrop="dragDrop(event,'${albumId}')"
-    ondragend="dragEnd(event)">
-    <img src="${esc(img.src)}" alt="${esc(img.alt||'')}" loading="lazy">
-    ${isAdmin?`<button class="drag-handle" onclick="event.stopPropagation()" title="ลากเพื่อเรียงลำดับ"><i class="ti ti-grip-vertical"></i></button>
-    <button class="img-del" onclick="event.stopPropagation();deleteImage('${albumId}','${img.id}')"><i class="ti ti-trash"></i></button>`:''}
-  </div>`).join('');
+  const allItems=imgs.map((item,i)=>{
+    if(item.type==='slideshow') return renderSlideshowBlock(item,albumId);
+    return `<div class="masonry-item"
+      draggable="${isAdmin?'true':'false'}"
+      data-img-id="${item.id}"
+      onclick="openLightbox(${i})"
+      ondragstart="dragStart(event,'${albumId}')"
+      ondragover="dragOver(event)"
+      ondragleave="dragLeave(event)"
+      ondrop="dragDrop(event,'${albumId}')"
+      ondragend="dragEnd(event)">
+      <img src="${esc(item.src)}" alt="${esc(item.alt||'')}" loading="lazy">
+      ${isAdmin?`<button class="drag-handle" onclick="event.stopPropagation()" title="ลากเพื่อเรียง"><i class="ti ti-grip-vertical"></i></button>
+      <button class="img-del" onclick="event.stopPropagation();deleteImage('${albumId}','${item.id}')"><i class="ti ti-trash"></i></button>`:''}
+    </div>`;
+  }).join('');
+  grid.innerHTML=allItems;
+  // init slideshow autoplay
+  setTimeout(()=>initSlideshows(),100);
 }
 
 // ═══════════════════════════════
@@ -1161,20 +1755,15 @@ function renderExperience(){
           <div class="exp-s-lbl"><i class="ti ti-list-check"></i>Responsibilities</div>
           <ul class="exp-list">${(e.responsibilities||[]).map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
         </div>
-        <div class="exp-zone">
+        ${(e.workflow&&e.workflow.length)?`<div class="exp-zone">
           <div class="exp-s-lbl"><i class="ti ti-settings-2"></i>Workflow</div>
-          ${(e.workflow&&e.workflow.length)
-            ? `<ul class="exp-list">${e.workflow.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>`
-            : `<span style="font-size:12px;color:var(--ink3)">—</span>`}
-        </div>
+          <ul class="exp-list">${e.workflow.map(r=>`<li>${esc(r)}</li>`).join('')}</ul>
+        </div>`:''}
         <div class="exp-zone exp-zone-tools">
           <div class="exp-s-lbl"><i class="ti ti-tools"></i>Tools</div>
           <div class="tools-wrap">${(e.tools||[]).map(t=>`<span class="tool-chip">${esc(t)}</span>`).join('')}</div>
         </div>
       </div>
-      ${(e.results&&e.results.length)
-        ? `<div class="result-strip">${e.results.map(r=>`<div class="result-item"><div class="result-num">${esc(r.num)}</div><div class="result-lbl">${esc(r.lbl)}</div></div>`).join('')}</div>`
-        : ''}
     </div>`;
   }).join('');
 }
@@ -1244,10 +1833,16 @@ document.querySelectorAll('.modal-overlay').forEach(el=>{
 // ═══════════════════════════════
 // ADMIN
 // ═══════════════════════════════
+function toggleCmsMenu(){
+  document.getElementById('cms-popover').classList.toggle('open');
+}
+function closeCmsMenu(){
+  document.getElementById('cms-popover').classList.remove('open');
+}
 function checkAdmin(){
   if(document.getElementById('admin-pw').value===PASS){
     isAdmin=true;document.body.classList.add('admin-mode');
-    document.getElementById('cms-bar').classList.add('open');
+    document.getElementById('cms-fab').style.display='flex';
     setOwnerMode(true);
     closeModal('admin-modal');document.getElementById('admin-pw').value='';
     toast('Admin mode active');renderCurrentPage();enableInlineEdit();
@@ -1255,16 +1850,16 @@ function checkAdmin(){
 }
 function exitAdmin(){
   isAdmin=false;document.body.classList.remove('admin-mode');
-  document.getElementById('cms-bar').classList.remove('open');
+  document.getElementById('cms-fab').style.display='none';
+  closeCmsMenu();
   document.querySelectorAll('.editable').forEach(el=>el.contentEditable='false');
-  // Stay in owner mode so Admin button stays visible, or fully go public?
-  // We keep ownerMode on so they can re-enter admin without secret tap again
   toast('Exited admin mode');renderCurrentPage();
 }
 function goPublic(){
   isAdmin=false;
   document.body.classList.remove('admin-mode');
-  document.getElementById('cms-bar').classList.remove('open');
+  document.getElementById('cms-fab').style.display='none';
+  closeCmsMenu();
   document.querySelectorAll('.editable').forEach(el=>el.contentEditable='false');
   setOwnerMode(false);
   toast('Public mode — Admin hidden');renderCurrentPage();
@@ -1295,6 +1890,7 @@ function loadProfileForm(){
   document.getElementById('pf-resume').value=p.resumeUrl||'';
 }
 function saveProfile(){
+  pushUndo();
   const p=DB.profile;
   p.name=document.getElementById('pf-name').value.trim()||p.name;
   p.role=document.getElementById('pf-role').value.trim();
@@ -1389,6 +1985,7 @@ function saveAlbum(){
   const companyId=document.getElementById('al-company').value;
   const category=document.getElementById('al-category').value.trim();
   if(!name){toast('Enter album name');return;}
+  pushUndo();
   const now=new Date();
   const mo=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
   const updatedAt=mo[now.getMonth()]+' '+now.getFullYear();
@@ -1402,6 +1999,7 @@ function saveAlbum(){
 }
 function deleteAlbum(id){
   if(!confirm('Delete this album and all its images?'))return;
+  pushUndo();
   DB.albums=DB.albums.filter(a=>a.id!==id);
   delete DB.images[id];
   saveDB();renderCurrentPage();renderFilterBar();renderTagFilterBar();toast('Album deleted');
@@ -1626,7 +2224,187 @@ function setMasonryCols(n){
     b.classList.toggle('active', parseInt(b.textContent)===n);
   });
 }
-let dragSrcId=null, dragAlbumId=null;
+
+// ── Back to top ──
+window.addEventListener('scroll',()=>{
+  const btn=document.getElementById('back-to-top');
+  if(btn)btn.classList.toggle('visible',window.scrollY>350);
+});
+
+// ── Album card drag reorder ──
+let cardDragSrcId=null;
+function albumCardDragStart(e,albumId){
+  cardDragSrcId=albumId;
+  e.currentTarget.classList.add('card-dragging');
+  e.dataTransfer.effectAllowed='move';
+}
+function albumCardDragOver(e){e.preventDefault();e.currentTarget.classList.add('card-drag-over');}
+function albumCardDragLeave(e){e.currentTarget.classList.remove('card-drag-over');}
+function albumCardDragEnd(e){
+  e.currentTarget.classList.remove('card-dragging');
+  document.querySelectorAll('.album-card').forEach(c=>c.classList.remove('card-drag-over','card-dragging'));
+}
+function albumCardDrop(e,targetId){
+  e.preventDefault();e.stopPropagation();
+  e.currentTarget.classList.remove('card-drag-over');
+  if(!cardDragSrcId||cardDragSrcId===targetId)return;
+  const fi=DB.albums.findIndex(a=>a.id===cardDragSrcId);
+  const ti=DB.albums.findIndex(a=>a.id===targetId);
+  if(fi<0||ti<0)return;
+  const moved=DB.albums.splice(fi,1)[0];
+  DB.albums.splice(ti,0,moved);
+  saveDB();renderCurrentPage();toast('เรียงลำดับอัลบั้มแล้ว');
+}
+
+// ── Slideshow ──
+let ssSelectedIds=[];
+let ssDriveImages=[]; // images loaded from Drive for slideshow
+
+function switchSsTab(tab){
+  document.getElementById('ss-panel-album').classList.toggle('hidden',tab!=='album');
+  document.getElementById('ss-panel-drive').classList.toggle('hidden',tab!=='drive');
+  document.getElementById('ss-tab-album').classList.toggle('active',tab==='album');
+  document.getElementById('ss-tab-drive').classList.toggle('active',tab==='drive');
+  if(tab==='drive'){
+    const gasUrl=getGasUrl();
+    const ok=document.getElementById('ss-gas-ok');
+    const miss=document.getElementById('ss-gas-missing');
+    if(gasUrl){
+      ok.classList.remove('hidden');miss.style.display='none';
+      document.getElementById('ss-gas-short').textContent=gasUrl.replace('https://script.google.com/macros/s/','').slice(0,20)+'...';
+    } else {
+      ok.classList.add('hidden');miss.style.display='block';
+    }
+  }
+}
+
+function openAddSlideshowModal(){
+  if(!isAdmin)return;
+  ssSelectedIds=[];ssDriveImages=[];
+  const imgs=(DB.images[currentAlbumId]||[]).filter(i=>i.type!=='slideshow');
+  const picker=document.getElementById('ss-image-picker');
+  picker.innerHTML=imgs.map(img=>`
+    <div class="img-thumb" id="ss-pick-${img.id}" onclick="toggleSsPick('${img.id}','album')" style="cursor:pointer;border:2px solid transparent;transition:all .12s;position:relative">
+      <img src="${esc(img.src)}" alt="" loading="lazy">
+      <div style="position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:4px;background:var(--accent);color:#fff;font-size:10px;display:none;align-items:center;justify-content:center;font-weight:700;z-index:2" id="ss-num-${img.id}"></div>
+    </div>`).join('');
+  document.getElementById('ss-selected-count').textContent='0';
+  document.getElementById('ss-title-input').value='';
+  document.getElementById('ss-drive-urls').value='';
+  document.getElementById('ss-drive-status').textContent='';
+  document.getElementById('ss-drive-picker').innerHTML='';
+  switchSsTab('album');
+  openModal('slideshow-modal');
+}
+
+function toggleSsPick(imgId, source){
+  const idx=ssSelectedIds.findIndex(s=>s.id===imgId);
+  if(idx>-1){
+    ssSelectedIds.splice(idx,1);
+    const el=document.getElementById('ss-pick-'+imgId);
+    if(el){el.style.borderColor='transparent';const n=document.getElementById('ss-num-'+imgId);if(n)n.style.display='none';}
+  } else {
+    // get src from album or drive list
+    let src='',alt='Image';
+    const albumImg=(DB.images[currentAlbumId]||[]).find(i=>i.id===imgId);
+    const driveImg=ssDriveImages.find(i=>i.id===imgId);
+    if(albumImg){src=albumImg.src;alt=albumImg.alt||'Image';}
+    else if(driveImg){src=driveImg.src;alt=driveImg.alt||'Image';}
+    ssSelectedIds.push({id:imgId,src,alt});
+    const el=document.getElementById('ss-pick-'+imgId);
+    if(el){el.style.borderColor='var(--accent)';const n=document.getElementById('ss-num-'+imgId);if(n){n.style.display='flex';}}
+  }
+  // renumber
+  ssSelectedIds.forEach((item,i)=>{const n=document.getElementById('ss-num-'+item.id);if(n)n.textContent=i+1;});
+  document.getElementById('ss-selected-count').textContent=ssSelectedIds.length;
+}
+
+async function loadDriveForSs(){
+  const gasUrl=getGasUrl();
+  if(!gasUrl){toast('ตั้งค่า Script URL ก่อน');return;}
+  const raw=document.getElementById('ss-drive-urls').value.trim();
+  if(!raw){toast('วาง Drive URL ก่อน');return;}
+  const statusEl=document.getElementById('ss-drive-status');
+  statusEl.innerHTML='<i class="ti ti-loader" style="animation:spin 1s linear infinite;display:inline-block;margin-right:4px"></i> กำลังโหลด...';
+  ssDriveImages=[];
+  const lines=raw.split('\n').map(l=>l.trim()).filter(Boolean);
+  for(const line of lines){
+    const parsed=parseDriveUrl(line);
+    if(!parsed)continue;
+    if(parsed.type==='folder'){
+      const ids=await fetchFolderViaGas(gasUrl,parsed.id);
+      ids.forEach(fid=>ssDriveImages.push({id:'drv-'+fid,src:driveFileToSrc(fid),alt:'Image'}));
+    } else if(parsed.type==='file'){
+      ssDriveImages.push({id:'drv-'+parsed.id,src:driveFileToSrc(parsed.id),alt:'Image'});
+    } else if(parsed.type==='direct'){
+      ssDriveImages.push({id:'drv-'+uid(),src:parsed.src,alt:'Image'});
+    }
+  }
+  if(!ssDriveImages.length){statusEl.textContent='⚠️ ไม่พบรูป — ตรวจสอบ URL และ Script';return;}
+  statusEl.innerHTML=`✅ พบ <b>${ssDriveImages.length}</b> รูป — คลิกเพื่อเลือก`;
+  const picker=document.getElementById('ss-drive-picker');
+  picker.innerHTML=ssDriveImages.map(img=>`
+    <div class="img-thumb" id="ss-pick-${img.id}" onclick="toggleSsPick('${img.id}','drive')" style="cursor:pointer;border:2px solid transparent;transition:all .12s;position:relative">
+      <img src="${esc(img.src)}" alt="" loading="lazy" onerror="this.parentElement.style.opacity='.4'">
+      <div style="position:absolute;top:2px;right:2px;width:18px;height:18px;border-radius:4px;background:var(--accent);color:#fff;font-size:10px;display:none;align-items:center;justify-content:center;font-weight:700;z-index:2" id="ss-num-${img.id}"></div>
+    </div>`).join('');
+}
+
+function createSlideshow(){
+  if(ssSelectedIds.length<1){toast('เลือกอย่างน้อย 1 รูป');return;}
+  const ssBlock={
+    id:uid(),type:'slideshow',
+    title:document.getElementById('ss-title-input').value.trim(),
+    ratio:document.getElementById('ss-ratio').value,
+    delay:parseInt(document.getElementById('ss-delay').value)||3000,
+    images:ssSelectedIds.map(s=>({id:s.id,src:s.src,alt:s.alt||''}))
+  };
+  if(!DB.images[currentAlbumId])DB.images[currentAlbumId]=[];
+  DB.images[currentAlbumId].unshift(ssBlock);
+  saveDB();closeModal('slideshow-modal');renderAlbumDetail(currentAlbumId);
+  toast('สร้าง Slideshow แล้ว ✨');
+}
+function renderSlideshowBlock(block,albumId){
+  const ssId='ss-'+block.id;
+  const imgs=block.images||[];
+  const slides=imgs.map((img,i)=>`<img class="slide ${i===0?'ss-active':''}" src="${esc(img.src)}" alt="${esc(img.alt||'')}" loading="lazy" style="width:100%;display:${i===0?'block':'none'}">`).join('');
+  const dots=imgs.map((_,i)=>`<button class="ss-dot ${i===0?'ss-dot-active':''}" onclick="event.stopPropagation();ssDot('${ssId}',${i})"></button>`).join('');
+  return `<div class="masonry-item" style="cursor:default;break-inside:avoid">
+    <div class="slideshow-block ${esc(block.ratio||'ss-ratio-16-9')}" id="${ssId}" data-delay="${block.delay||3000}" data-cur="0" data-total="${imgs.length}">
+      <div style="position:relative">${slides}
+        <div class="ss-nav">
+          <button class="ss-nav-btn" onclick="event.stopPropagation();ssMove('${ssId}',-1)"><i class="ti ti-chevron-left"></i></button>
+          <button class="ss-nav-btn" onclick="event.stopPropagation();ssMove('${ssId}',1)"><i class="ti ti-chevron-right"></i></button>
+        </div>
+        <div class="ss-dots">${dots}</div>
+        <div class="ss-counter"><span id="${ssId}-cur">1</span> / ${imgs.length}</div>
+      </div>
+    </div>
+    ${block.title?`<div class="ss-label">${esc(block.title)}</div>`:''}
+    ${isAdmin?`<div class="ss-admin-bar" style="display:flex">
+      <span style="font-size:11px;color:var(--ink3)"><i class="ti ti-slideshow" style="font-size:12px;vertical-align:-1px"></i> Slideshow · ${imgs.length} รูป</span>
+      <button class="btn btn-sm btn-danger" onclick="deleteImage('${albumId}','${block.id}')"><i class="ti ti-trash"></i></button>
+    </div>`:''}
+  </div>`;
+}
+function ssMove(ssId,dir){
+  const el=document.getElementById(ssId);if(!el)return;
+  const total=parseInt(el.dataset.total),cur=parseInt(el.dataset.cur);
+  const next=(cur+dir+total)%total;
+  el.querySelectorAll('.slide').forEach((s,i)=>s.style.display=i===next?'block':'none');
+  el.querySelectorAll('.ss-dot').forEach((d,i)=>d.classList.toggle('ss-dot-active',i===next));
+  el.dataset.cur=next;
+  const c=document.getElementById(ssId+'-cur');if(c)c.textContent=next+1;
+}
+function ssDot(ssId,idx){ssMove(ssId,idx-parseInt(document.getElementById(ssId).dataset.cur));}
+function initSlideshows(){
+  if(window._ssT)window._ssT.forEach(clearInterval);window._ssT=[];
+  document.querySelectorAll('.slideshow-block').forEach(el=>{
+    const delay=parseInt(el.dataset.delay)||0;
+    if(!delay)return;
+    window._ssT.push(setInterval(()=>ssMove(el.id,1),delay));
+  });
+}
 
 function dragStart(e, albumId){
   dragSrcId=e.currentTarget.dataset.imgId;
@@ -1663,22 +2441,27 @@ function dragDrop(e, albumId){
   DB.images[albumId]=imgs;
   saveDB();
   renderAlbumDetail(albumId);
-  toast('เรียงลำดับใหม่แล้ว');
+  toast('Order updated');
 }
 
 function deleteImage(albumId,imgId){
-  if(!confirm('ลบรูปนี้?'))return;
+  if(!confirm('Remove this image?'))return;
+  pushUndo();
   DB.images[albumId]=(DB.images[albumId]||[]).filter(i=>i.id!==imgId);
-  saveDB();renderAlbumDetail(albumId);toast('ลบรูปแล้ว');
+  saveDB();renderAlbumDetail(albumId);toast('Image removed');
 }
 
 // ═══════════════════════════════
 // EXPERIENCE CRUD
 // ═══════════════════════════════
 function openAddExpModal(){
-  editExpId=null;
+  editExpId=null;workflowVisible=false;
   document.getElementById('exp-modal-title').textContent='Add Experience';
-  ['exp-role','exp-proj','exp-period','exp-desc','exp-resp','exp-workflow','exp-tools','exp-results'].forEach(id=>document.getElementById(id).value='');
+  ['exp-role','exp-proj','exp-period','exp-desc','exp-workflow','exp-resp','exp-tools'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.value='';
+  });
+  document.getElementById('workflow-field').classList.add('hidden');
+  setWorkflowBtn(false);
   populateCoSelect('exp-company','');
   openModal('exp-modal');
 }
@@ -1692,9 +2475,12 @@ function openEditExpModal(id){
   document.getElementById('exp-period').value=e.period||'';
   document.getElementById('exp-desc').value=e.desc||'';
   document.getElementById('exp-resp').value=(e.responsibilities||[]).join('\n');
-  document.getElementById('exp-workflow').value=(e.workflow||[]).join('\n');
   document.getElementById('exp-tools').value=(e.tools||[]).join(', ');
-  document.getElementById('exp-results').value=(e.results||[]).map(r=>r.num+' | '+r.lbl).join('\n');
+  const hasWorkflow=!!(e.workflow&&e.workflow.length);
+  workflowVisible=hasWorkflow;
+  document.getElementById('exp-workflow').value=(e.workflow||[]).join('\n');
+  document.getElementById('workflow-field').classList.toggle('hidden',!hasWorkflow);
+  setWorkflowBtn(hasWorkflow);
   openModal('exp-modal');
 }
 function saveExpCard(){
@@ -1704,16 +2490,15 @@ function saveExpCard(){
   const period=document.getElementById('exp-period').value.trim();
   const desc=document.getElementById('exp-desc').value.trim();
   const resp=document.getElementById('exp-resp').value.split('\n').map(s=>s.trim()).filter(Boolean);
-  const workflow=document.getElementById('exp-workflow').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  const workflow=workflowVisible?document.getElementById('exp-workflow').value.split('\n').map(s=>s.trim()).filter(Boolean):[];
   const tools=document.getElementById('exp-tools').value.split(',').map(s=>s.trim()).filter(Boolean);
-  const results=document.getElementById('exp-results').value.split('\n').map(s=>s.trim()).filter(Boolean).map(s=>{
-    const p=s.split('|');return{num:(p[0]||'').trim(),lbl:(p[1]||'').trim()};
-  }).filter(r=>r.num);
   if(!project){toast('Enter project name');return;}
-  const data={companyId,role,project,period,desc,responsibilities:resp,workflow,tools,results};
+  pushUndo();
+  const data={companyId,role,project,period,desc,responsibilities:resp,workflow,tools,results:[]};
   if(editExpId){const idx=DB.experience.findIndex(e=>e.id===editExpId);if(idx>-1)DB.experience[idx]={...DB.experience[idx],...data};}
   else DB.experience.push({id:uid(),...data});
-  saveDB();closeModal('exp-modal');renderExperience();toast(editExpId?'Experience updated':'Experience added');
+  saveDB();closeModal('exp-modal');renderExperience();
+  toast(editExpId?'Experience updated':'Experience added');
 }
 function deleteExp(id){
   if(!confirm('Delete this experience card?'))return;
@@ -1722,10 +2507,132 @@ function deleteExp(id){
 }
 
 // ═══════════════════════════════
+// UNDO SYSTEM (up to 20 steps)
+// ═══════════════════════════════
+let undoStack=[];
+const UNDO_LIMIT=20;
+
+function pushUndo(){
+  undoStack.push(JSON.stringify(DB));
+  if(undoStack.length>UNDO_LIMIT)undoStack.shift();
+  const btn=document.getElementById('undo-btn');
+  if(btn){btn.style.color='#fff';btn.disabled=false;btn.querySelector('i').style.color=var_='var(--accent-m)';}
+  updateUndoBtn();
+}
+function updateUndoBtn(){
+  const btn=document.getElementById('undo-btn');
+  if(!btn)return;
+  if(undoStack.length>0){
+    btn.disabled=false;btn.style.color='#fff';
+    btn.querySelector('i').style.color='var(--accent-m)';
+    btn.title=`Undo (${undoStack.length} step${undoStack.length>1?'s':''})`;
+  } else {
+    btn.disabled=true;btn.style.color='rgba(255,255,255,.35)';
+    btn.querySelector('i').style.color='rgba(255,255,255,.2)';
+    btn.title='Nothing to undo';
+  }
+}
+function undoAction(){
+  if(!undoStack.length){toast('Nothing to undo');return;}
+  const prev=undoStack.pop();
+  DB=JSON.parse(prev);
+  localStorage.setItem('pf_v2',prev);
+  renderCurrentPage();renderSidebar();
+  updateUndoBtn();
+  toast('Undone ✓');
+}
+
+// Wrap saveDB to auto-push undo snapshot BEFORE saving
+const _origSaveDB=saveDB;
+function saveDB(){
+  // called AFTER DB is already mutated, so we can't snapshot here
+  // instead we use pushUndo() before each mutation
+  localStorage.setItem('pf_v2',JSON.stringify(DB));
+}
+
+// ── Workflow field toggle in exp modal ──
+let workflowVisible=false;
+function setWorkflowBtn(visible){
+  const icon=document.getElementById('workflow-toggle-icon');
+  const btn=document.getElementById('workflow-toggle-btn');
+  if(!icon||!btn)return;
+  const label=btn.querySelector('#workflow-toggle-label');
+  if(visible){
+    icon.className='ti ti-minus';
+    btn.style.background='#FAECE7';btn.style.borderColor='#E09070';btn.style.color='#993C1D';
+    if(label)label.textContent='Remove Workflow column';
+  } else {
+    icon.className='ti ti-plus';
+    btn.style.background='var(--accent-l)';btn.style.borderColor='var(--accent-m)';btn.style.color='var(--accent)';
+    if(label)label.textContent='Add Workflow column';
+  }
+}
+function toggleWorkflowField(){
+  workflowVisible=!workflowVisible;
+  document.getElementById('workflow-field').classList.toggle('hidden',!workflowVisible);
+  setWorkflowBtn(workflowVisible);
+}
+function bakeAndDownload(){
+  // Get current HTML source
+  const html = document.documentElement.outerHTML;
+
+  // Serialize current DB
+  const dataStr = JSON.stringify(DB).replace(/\\/g,'\\\\').replace(/`/g,'\\`');
+
+  // Replace the DEF constant and init line so data is baked in
+  const baked = html.replace(
+    /let DB=loadDB\(\);/,
+    `let DB=${JSON.stringify(DB)};`
+  ).replace(
+    /function loadDB\(\)\{[\s\S]*?return JSON\.parse\(JSON\.stringify\(DEF\)\);\}/,
+    'function loadDB(){try{const s=localStorage.getItem(\'pf_v2\');if(s)return JSON.parse(s);}catch(e){}return JSON.parse(JSON.stringify(DEF));}'
+  );
+
+  const blob = new Blob([baked], {type:'text/html;charset=utf-8'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'index.html';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('✅ ดาวน์โหลด index.html แล้ว — อัปโหลดขึ้น GitHub ได้เลย');
+}
+function exportData(){
+  const data=localStorage.getItem('pf_v2')||JSON.stringify(DB);
+  const blob=new Blob([data],{type:'application/json'});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download='portfolio-backup-'+new Date().toISOString().slice(0,10)+'.json';
+  document.body.appendChild(a);a.click();
+  document.body.removeChild(a);URL.revokeObjectURL(url);
+  toast('Export เสร็จแล้ว ✅');
+}
+function importData(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=function(ev){
+    try{
+      const data=JSON.parse(ev.target.result);
+      if(!data.profile||!data.albums){toast('ไฟล์ไม่ถูกต้อง');return;}
+      localStorage.setItem('pf_v2',JSON.stringify(data));
+      DB=data;
+      renderCurrentPage();renderSidebar();
+      toast('Import สำเร็จ ✅ ข้อมูลทั้งหมดกลับมาแล้ว');
+    }catch(err){toast('ไฟล์ผิดพลาด: '+err.message);}
+  };
+  reader.readAsText(file);
+  e.target.value='';
+}
+
+// ═══════════════════════════════
 // INIT
 // ═══════════════════════════════
 setOwnerMode(false); // start in public mode
 renderHome();
 </script>
-</body>
-</html>
+
+
+</body></html>
